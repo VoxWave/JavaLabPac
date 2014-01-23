@@ -24,6 +24,11 @@
             <artifactId>pitest-maven</artifactId>
             <version>0.30</version>
         </plugin>
+        <plugin>
+        	<groupId>com.googlecode.mavennatives</groupId>
+        	<artifactId>maven-nativedependencies-plugin</artifactId>
+        	<version>0.0.7</version>
+        </plugin>
     </plugins>
   </build>
   <dependencies>
@@ -44,5 +49,10 @@
         <version>4.10</version>
         <scope>test</scope>
     </dependency>
+  	<dependency>
+  		<groupId>com.badlogicgames.gdx</groupId>
+  		<artifactId>gdx</artifactId>
+  		<version>0.9.9</version>
+  	</dependency>
   </dependencies>
 </project>
