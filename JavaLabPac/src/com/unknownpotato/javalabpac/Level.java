@@ -1,8 +1,8 @@
-package com.unknownpotato.JavaLabPac;
+package com.unknownpotato.javalabpac;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
-import com.unknownpotato.JavaLabPac.Interfaces.Tickable;
+import com.unknownpotato.javalabpac.interfaces.Tickable;
 
 public class Level implements Tickable {
 	
@@ -14,6 +14,11 @@ public class Level implements Tickable {
 	
 	public void tick(){
 		this.world.step(1, 10, 10);
+	}
+	
+	public World getWorld(){
+		return world;
+		
 	}
 
 }

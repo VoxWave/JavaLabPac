@@ -1,4 +1,4 @@
-package com.unknownpotato.JavaLabPac;
+package com.unknownpotato.javalabpac;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 

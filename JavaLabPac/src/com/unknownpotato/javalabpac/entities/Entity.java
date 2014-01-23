@@ -4,18 +4,23 @@
  * and open the template in the editor.
  */
 
-package com.unknownpotato.JavaLabPac.Entities;
+package com.unknownpotato.javalabpac.entities;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.unknownpotato.JavaLabPac.Enums.CollisionType;
+import com.unknownpotato.javalabpac.entities.*;
+import com.unknownpotato.javalabpac.enums.CollisionType;
+import com.unknownpotato.javalabpac.enums.Direction;
+import com.unknownpotato.javalabpac.interfaces.Tickable;
 
 /**
  *
  * @author local
  */
-public interface Entity {
+public interface Entity extends Tickable {
+	
+	Entity createBody(Vector2 pos);
 	
 	Vector2 getPos();
 	
@@ -24,5 +29,7 @@ public interface Entity {
 	void collide(Entity entityB, CollisionType type);
 	
 	Sprite getSprite();
+	
+	void move(Direction direction);
     
 }

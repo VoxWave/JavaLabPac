@@ -1,4 +1,4 @@
-package com.unknownpotato.JavaLabPac;
+package com.unknownpotato.javalabpac;
 
 import java.util.ArrayList;
 
@@ -10,8 +10,8 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
-import com.unknownpotato.JavaLabPac.Entities.Entity;
-import com.unknownpotato.JavaLabPac.Enums.CollisionType;
+import com.unknownpotato.javalabpac.entities.Entity;
+import com.unknownpotato.javalabpac.enums.CollisionType;
 
 
 public class Game implements ApplicationListener, ContactListener {

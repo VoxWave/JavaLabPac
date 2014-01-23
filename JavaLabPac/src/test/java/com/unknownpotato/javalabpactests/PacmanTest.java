@@ -1,4 +1,4 @@
-package test.java.com.unknownpotato.JavaLabPacTests;
+package test.java.com.unknownpotato.javalabpactests;
 
 import static org.junit.Assert.*;
 

@@ -1,4 +1,4 @@
-package com.unknownpotato.JavaLabPac.Enums;
+package com.unknownpotato.javalabpac.enums;
 
 public enum CollisionType {
 	START, END;
