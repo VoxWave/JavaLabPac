@@ -1,21 +1,30 @@
 package com.unknownpotato.JavaLabPac;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.ApplicationListener;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
+import com.badlogic.gdx.physics.box2d.World;
 import com.unknownpotato.JavaLabPac.Entities.Entity;
 import com.unknownpotato.JavaLabPac.Enums.CollisionType;
 
 
 public class Game implements ApplicationListener, ContactListener {
-
+	
+	private Level level;
+	
 	@Override
 	public void create() {
 		// TODO Auto-generated method stub
-
+		int[][] lvl = new int[17][17];
+		
+		
+		this.level = new Level(lvl);
 	}
 
 	@Override
@@ -27,7 +36,7 @@ public class Game implements ApplicationListener, ContactListener {
 	@Override
 	public void render() {
 		// TODO Auto-generated method stub
-
+		this.level.tick();
 	}
 
 	@Override
@@ -51,12 +60,13 @@ public class Game implements ApplicationListener, ContactListener {
 	@Override
 	public void beginContact(Contact contact) {
 		// TODO Auto-generated method stub
-		
+		doContact(contact,CollisionType.START);
 	}
 
 	@Override
 	public void endContact(Contact contact) {
 		// TODO Auto-generated method stub
+		doContact(contact,CollisionType.END);
 		
 	}
 	
