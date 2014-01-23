@@ -35,25 +35,31 @@ public class Game implements ApplicationListener, ContactListener {
 		this.batch = new SpriteBatch();
 		this.world = new World(new Vector2() , true);
 		this.pacman = new Pacman(new Vector2(),this.world);
+		this.height = Gdx.graphics.getHeight();
+		this.width = Gdx.graphics.getWidth();
 		
 	}
 
 	@Override
 	public void resize(int width, int height) {
 		// TODO Auto-generated method stub
+		this.height= height;
+		this.width = width;
 
 	}
 
 	@Override
 	public void render() {
 		// TODO Auto-generated method stub
-		Gdx.gl.glClearColor(1, 1, 1, 1);
-		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
-		Gdx.gl.glViewport(0, 0, width, height);
-		batch.begin();
-		batch.draw(this.pacman.getSprite(), 1f, 1f);
-		batch.end();
-		this.level.tick();
+//		Gdx.gl.glClearColor(1, 1, 1, 1);
+//		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
+//		Gdx.gl.glViewport(0, 0, width, height);
+//		batch.begin();
+//		batch.draw(this.pacman.getSprite().getTexture(), 1f, 1f);
+//		batch.end();
+		this.world.step(1, 10, 10);
+		this.pacman.tick();
+		System.out.println(this.pacman.getPos());
 	}
 
 	@Override

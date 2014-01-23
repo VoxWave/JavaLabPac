@@ -22,10 +22,11 @@ public class Pacman implements Entity {
 	private Body body;
 	private Level level;
 	private World world;
+	private Texture texture;
 	
 	public Pacman(Vector2 pos,World world){
 		FileHandle file = Gdx.files.getFileHandle("rsc/Pacman.png", FileType.Internal);
-		Texture texture = new Texture(file);
+		this.texture = new Texture(file);
 		this.sprite = new Sprite(texture);
 		this.world = world;
 		BodyDef def = new BodyDef();
@@ -65,6 +66,9 @@ public class Pacman implements Entity {
 	public Sprite getSprite() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	public Texture getTexture(){
+		return this.texture;
 	}
 
 	@Override
