@@ -10,6 +10,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.badlogic.gdx.physics.box2d.World;
+import com.unknownpotato.javalabpac.Game;
 import com.unknownpotato.javalabpac.Level;
 import com.unknownpotato.javalabpac.enums.CollisionType;
 import com.unknownpotato.javalabpac.enums.Direction;
@@ -19,12 +21,25 @@ public class Pacman implements Entity {
 	private Sprite sprite;
 	private Body body;
 	private Level level;
+	private World world;
 	
-	public Pacman(){
+	public Pacman(Vector2 pos,World world){
 		FileHandle file = Gdx.files.getFileHandle("rsc/Pacman.png", FileType.Internal);
 		Texture texture = new Texture(file);
 		this.sprite = new Sprite(texture);
-		
+		this.world = world;
+		BodyDef def = new BodyDef();
+		def.type = BodyDef.BodyType.DynamicBody;
+		def.position.set(pos);
+		def.fixedRotation = true;	
+
+		this.body = this.world.createBody(def);
+		body.setUserData(this);
+
+		CircleShape shape = new CircleShape();
+		shape.setRadius(1);
+		this.body.createFixture(shape, 0.00001f);
+		shape.dispose();
 		
 	}
 
@@ -92,23 +107,26 @@ public class Pacman implements Entity {
 	}
 
 	@Override
-	public Entity createBody(Vector2 pos) {
+	public void createBody(Vector2 pos) {
 		// TODO Auto-generated method stub
 		BodyDef def = new BodyDef();
 		def.type = BodyDef.BodyType.DynamicBody;
 		def.position.set(pos);
-
-		def.linearDamping = 0.25f;
 		def.fixedRotation = true;	
 
-		this.body = this.level.getWorld().createBody(def);
+		this.body = this.world.createBody(def);
 		body.setUserData(this);
 
 		CircleShape shape = new CircleShape();
 		shape.setRadius(1);
 		this.body.createFixture(shape, 0.00001f);
 		shape.dispose();
-		return this;
+	}
+
+	@Override
+	public float getSize() {
+		// TODO Auto-generated method stub
+		return 2;
 	}
 
 }

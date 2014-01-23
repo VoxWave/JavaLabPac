@@ -20,7 +20,9 @@ import com.unknownpotato.javalabpac.interfaces.Tickable;
  */
 public interface Entity extends Tickable {
 	
-	Entity createBody(Vector2 pos);
+	void createBody(Vector2 pos);
+	
+	
 	
 	Vector2 getPos();
 	
@@ -31,5 +33,7 @@ public interface Entity extends Tickable {
 	Sprite getSprite();
 	
 	void move(Direction direction);
+
+	float getSize();
     
 }
