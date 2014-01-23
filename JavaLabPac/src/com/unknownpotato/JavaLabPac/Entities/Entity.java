@@ -6,10 +6,23 @@
 
 package com.unknownpotato.JavaLabPac.Entities;
 
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.unknownpotato.JavaLabPac.Enums.CollisionType;
+
 /**
  *
  * @author local
  */
 public interface Entity {
+	
+	Vector2 getPos();
+	
+	Body getBody();
+
+	void collide(Entity entityB, CollisionType type);
+	
+	Sprite getSprite();
     
 }
