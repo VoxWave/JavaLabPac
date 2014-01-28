@@ -25,14 +25,30 @@ public class Pacman implements Entity {
 	private Texture texture;
 	
 	public Pacman(Vector2 pos,World world){
+		
+		/**
+		 * load up our image
+		 */
+		
 //		FileHandle file = Gdx.files.getFileHandle("rsc/Pacman.png", FileType.Internal);
 //		this.texture = new Texture(file);
 //		this.sprite = new Sprite(texture);
+		
 		this.world = world;
+		
+		/**
+		 * Here we create a body for pacman.
+		 * Box2d physics engine uses the body in its calculations
+		 */
+		
 		BodyDef def = new BodyDef();
 		def.type = BodyDef.BodyType.DynamicBody;
 		def.position.set(pos);
 		def.fixedRotation = true;	
+		
+		/**
+		 * the box2d world creates the body in it self.
+		 */
 
 		this.body = this.world.createBody(def);
 		body.setUserData(this);
@@ -46,26 +62,22 @@ public class Pacman implements Entity {
 
 	@Override
 	public Vector2 getPos() {
-		// TODO Auto-generated method stub
 		return this.body.getPosition();
 	}
 
 	@Override
 	public Body getBody() {
-		// TODO Auto-generated method stub
 		return this.getBody();
 	}
 
 	@Override
 	public void collide(Entity entityB, CollisionType type) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public Sprite getSprite() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.sprite;
 	}
 	public Texture getTexture(){
 		return this.texture;
@@ -112,7 +124,6 @@ public class Pacman implements Entity {
 
 	@Override
 	public void createBody(Vector2 pos) {
-		// TODO Auto-generated method stub
 		BodyDef def = new BodyDef();
 		def.type = BodyDef.BodyType.DynamicBody;
 		def.position.set(pos);
@@ -129,7 +140,6 @@ public class Pacman implements Entity {
 
 	@Override
 	public float getSize() {
-		// TODO Auto-generated method stub
 		return 2;
 	}
 
