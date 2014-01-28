@@ -25,9 +25,9 @@ public class Pacman implements Entity {
 	private Texture texture;
 	
 	public Pacman(Vector2 pos,World world){
-		FileHandle file = Gdx.files.getFileHandle("rsc/Pacman.png", FileType.Internal);
-		this.texture = new Texture(file);
-		this.sprite = new Sprite(texture);
+//		FileHandle file = Gdx.files.getFileHandle("rsc/Pacman.png", FileType.Internal);
+//		this.texture = new Texture(file);
+//		this.sprite = new Sprite(texture);
 		this.world = world;
 		BodyDef def = new BodyDef();
 		def.type = BodyDef.BodyType.DynamicBody;

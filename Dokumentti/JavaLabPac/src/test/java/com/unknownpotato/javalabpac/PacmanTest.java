@@ -1,4 +1,4 @@
-package test.java.com.unknownpotato.javalabpactests;
+package test.java.com.unknownpotato.javalabpac;
 
 import static org.junit.Assert.*;
 
@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.GdxNativesLoader;
 import com.unknownpotato.javalabpac.entities.Pacman;
 import com.unknownpotato.javalabpac.enums.Direction;
 
@@ -18,6 +19,7 @@ public class PacmanTest {
 
 	@Before
 	public void setUp() throws Exception {
+		GdxNativesLoader.load();
 		this.world = new World(new Vector2(),true);
 		this.pacman = new Pacman(new Vector2() , this.world);
 	}
