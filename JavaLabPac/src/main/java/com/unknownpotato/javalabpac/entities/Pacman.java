@@ -24,12 +24,12 @@ public class Pacman implements Entity {
 	private World world;
 	private Texture texture;
 	
-	public Pacman(Vector2 pos,World world){
+	public Pacman(Vector2 pos,World world, Sprite sprite){
 		
 		/**
 		 * load up our image
 		 */
-		
+		this.sprite = sprite;
 //		FileHandle file = Gdx.files.getFileHandle("rsc/Pacman.png", FileType.Internal);
 //		this.texture = new Texture(file);
 //		this.sprite = new Sprite(texture);
@@ -67,7 +67,7 @@ public class Pacman implements Entity {
 
 	@Override
 	public Body getBody() {
-		return this.getBody();
+		return this.body;
 	}
 
 	@Override
@@ -107,7 +107,6 @@ public class Pacman implements Entity {
 	@Override
 	public void tick() {
 		Vector2 amount = new Vector2();
-		// TODO Auto-generated method stub
 		if (Gdx.input.isKeyPressed(Keys.W)) {
 			this.move(Direction.UP);
 		}

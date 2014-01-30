@@ -3,6 +3,7 @@ package com.unknownpotato.javalabpac.entities;
 import static org.junit.Assert.*;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.badlogic.gdx.math.Vector2;
@@ -20,12 +21,17 @@ public class PacmanTest {
 		this.world.step(1, 10, 10);
 	}
 	
+	@BeforeClass
+	public static void setUpBeforeClass(){
+		GdxNativesLoader.load();
+	}
+	
 
 	@Before
 	public void setUp() throws Exception {
-		GdxNativesLoader.load();
+//		GdxNativesLoader.load();
 		this.world = new World(new Vector2(),true);
-		this.pacman = new Pacman(new Vector2() , this.world);
+		this.pacman = new Pacman(new Vector2() , this.world, null);
 	}
 
 	@Test
@@ -98,6 +104,15 @@ public class PacmanTest {
 			isCorrect = true;
 		}
 		assertTrue(isCorrect);
+	}
+	
+	//this next test may seem like a stupid test but I actually found error by writing this test :D
+	//I had accidently made getBody call itself recursively.
+	
+	@Test
+	public void pacReturnsCorrectBody(){
+		World world2 = this.pacman.getBody().getWorld();
+		assertTrue(world2 == this.world);
 	}
 
 }

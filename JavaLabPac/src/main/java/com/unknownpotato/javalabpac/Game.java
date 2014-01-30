@@ -3,8 +3,10 @@ package com.unknownpotato.javalabpac;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.ApplicationListener;
+import com.badlogic.gdx.Files.FileType;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL10;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
@@ -34,7 +36,8 @@ public class Game implements ApplicationListener, ContactListener {
 		
 		this.batch = new SpriteBatch();
 		this.world = new World(new Vector2() , true);
-		this.pacman = new Pacman(new Vector2(),this.world);
+		Sprite pac = new Sprite(new Texture(Gdx.files.getFileHandle("rsc/Pacman.png", FileType.Internal)));
+		this.pacman = new Pacman(new Vector2(),this.world, pac);
 		this.height = Gdx.graphics.getHeight();
 		this.width = Gdx.graphics.getWidth();
 		

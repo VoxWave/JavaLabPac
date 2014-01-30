@@ -12,7 +12,7 @@ public class Level implements Tickable {
 	
 	public Level(int[][] lvl){
 		this.world = new World(new Vector2(), true);
-		this.pacman = new Pacman(new Vector2(),this.world);
+//		this.pacman = new Pacman(new Vector2(),this.world);
 	}
 	
 	public void tick(){
