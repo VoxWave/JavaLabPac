@@ -110,7 +110,7 @@ public class PacmanTest {
 	//I had accidently made getBody call itself recursively.
 	
 	@Test
-	public void pacReturnsCorrectBody(){
+	public void pacIsincorrectworld(){
 		World world2 = this.pacman.getBody().getWorld();
 		assertTrue(world2 == this.world);
 	}

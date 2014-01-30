@@ -7,9 +7,10 @@ import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Disposable;
 import com.unknownpotato.javalabpac.entities.Entity;
 
-public class Renderer {
+public class Renderer implements Disposable {
 	
 	private SpriteBatch batch;
 	private View view;
@@ -44,6 +45,12 @@ public class Renderer {
 					h, 1f, 1f, entity.getRotation());
 		}
 		batch.end();
+	}
+
+	@Override
+	public void dispose() {
+		batch.dispose();
+		
 	}
 
 }

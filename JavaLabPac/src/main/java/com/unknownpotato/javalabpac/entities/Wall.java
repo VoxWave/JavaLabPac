@@ -84,5 +84,11 @@ public class Wall implements Entity {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public void dispose() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

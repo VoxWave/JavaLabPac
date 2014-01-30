@@ -135,4 +135,10 @@ public class Pacman implements Entity {
 		return 0;
 	}
 
+	@Override
+	public void dispose() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
