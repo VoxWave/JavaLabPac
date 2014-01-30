@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.unknownpotato.javalabpac.Game;
 import com.unknownpotato.javalabpac.Level;
@@ -40,23 +41,9 @@ public class Pacman implements Entity {
 		 * Here we create a body for pacman.
 		 * Box2d physics engine uses the body in its calculations
 		 */
+		this.createBody(pos);
 		
-		BodyDef def = new BodyDef();
-		def.type = BodyDef.BodyType.DynamicBody;
-		def.position.set(pos);
-		def.fixedRotation = true;	
-		
-		/**
-		 * the box2d world creates the body in it self.
-		 */
 
-		this.body = this.world.createBody(def);
-		body.setUserData(this);
-
-		CircleShape shape = new CircleShape();
-		shape.setRadius(1);
-		this.body.createFixture(shape, 0.00001f);
-		shape.dispose();
 		
 	}
 
@@ -131,8 +118,8 @@ public class Pacman implements Entity {
 		this.body = this.world.createBody(def);
 		body.setUserData(this);
 
-		CircleShape shape = new CircleShape();
-		shape.setRadius(1);
+		PolygonShape shape = new PolygonShape();
+		shape.setAsBox(1, 1);
 		this.body.createFixture(shape, 0.00001f);
 		shape.dispose();
 	}

@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
@@ -18,6 +19,7 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
 import com.unknownpotato.javalabpac.entities.Entity;
 import com.unknownpotato.javalabpac.entities.Pacman;
+import com.unknownpotato.javalabpac.entities.Wall;
 import com.unknownpotato.javalabpac.enums.CollisionType;
 
 
@@ -29,15 +31,18 @@ public class Game implements ApplicationListener, ContactListener {
 	private int height;
 	private Pacman pacman;
 	private World world;
+	private Wall wall;
+	private Box2DDebugRenderer debug;
 	
 	@Override
 	public void create() {
 		// TODO Auto-generated method stub
-		
+		this.debug = new Box2DDebugRenderer(true, true, true, true, true, true);
 		this.batch = new SpriteBatch();
 		this.world = new World(new Vector2() , true);
 		Sprite pac = new Sprite(new Texture(Gdx.files.getFileHandle("rsc/Pacman.png", FileType.Internal)));
 		this.pacman = new Pacman(new Vector2(),this.world, pac);
+		this.wall = new Wall(new Vector2(0f,10f),this.world, pac);
 		this.height = Gdx.graphics.getHeight();
 		this.width = Gdx.graphics.getWidth();
 		
