@@ -35,5 +35,9 @@ public interface Entity extends Tickable {
 	void move(Direction direction);
 
 	float getSize();
+
+
+
+	float getRotation();
     
 }

@@ -129,4 +129,10 @@ public class Pacman implements Entity {
 		return 2;
 	}
 
+	@Override
+	public float getRotation() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

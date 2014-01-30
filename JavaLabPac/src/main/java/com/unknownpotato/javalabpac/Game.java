@@ -21,6 +21,7 @@ import com.unknownpotato.javalabpac.entities.Entity;
 import com.unknownpotato.javalabpac.entities.Pacman;
 import com.unknownpotato.javalabpac.entities.Wall;
 import com.unknownpotato.javalabpac.enums.CollisionType;
+import com.unknownpotato.javalabpac.rendering.Renderer;
 
 
 public class Game implements ApplicationListener, ContactListener {
@@ -32,11 +33,13 @@ public class Game implements ApplicationListener, ContactListener {
 	private Pacman pacman;
 	private World world;
 	private Wall wall;
+	private Renderer renderer;
 	private Box2DDebugRenderer debug;
 	
 	@Override
 	public void create() {
 		// TODO Auto-generated method stub
+		this.renderer = new Renderer();
 		this.debug = new Box2DDebugRenderer(true, true, true, true, true, true);
 		this.batch = new SpriteBatch();
 		this.world = new World(new Vector2() , true);
@@ -53,6 +56,7 @@ public class Game implements ApplicationListener, ContactListener {
 		// TODO Auto-generated method stub
 		this.height= height;
 		this.width = width;
+		this.renderer.getView().update(this.width, this.height);
 
 	}
 

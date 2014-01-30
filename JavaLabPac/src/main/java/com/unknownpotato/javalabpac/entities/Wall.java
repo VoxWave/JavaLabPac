@@ -78,5 +78,11 @@ public class Wall implements Entity {
 		
 		return 0;
 	}
+
+	@Override
+	public float getRotation() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 }
