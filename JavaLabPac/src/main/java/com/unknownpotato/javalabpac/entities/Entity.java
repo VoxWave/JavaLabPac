@@ -13,6 +13,7 @@ import com.badlogic.gdx.utils.Disposable;
 import com.unknownpotato.javalabpac.entities.*;
 import com.unknownpotato.javalabpac.enums.CollisionType;
 import com.unknownpotato.javalabpac.enums.Direction;
+import com.unknownpotato.javalabpac.enums.EntityType;
 import com.unknownpotato.javalabpac.interfaces.Tickable;
 
 /**
@@ -23,7 +24,7 @@ public interface Entity extends Tickable, Disposable {
 	
 	void createBody(Vector2 pos);
 	
-	
+	EntityType getType();
 	
 	Vector2 getPos();
 	

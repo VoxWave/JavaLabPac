@@ -16,6 +16,7 @@ import com.unknownpotato.javalabpac.Game;
 import com.unknownpotato.javalabpac.Level;
 import com.unknownpotato.javalabpac.enums.CollisionType;
 import com.unknownpotato.javalabpac.enums.Direction;
+import com.unknownpotato.javalabpac.enums.EntityType;
 
 public class Pacman implements Entity {
 	
@@ -139,6 +140,12 @@ public class Pacman implements Entity {
 	public void dispose() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public EntityType getType() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

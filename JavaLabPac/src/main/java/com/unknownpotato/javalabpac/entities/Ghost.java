@@ -5,12 +5,13 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.unknownpotato.javalabpac.enums.CollisionType;
 import com.unknownpotato.javalabpac.enums.Direction;
+import com.unknownpotato.javalabpac.enums.EntityType;
 
 public class Ghost implements Entity {
 
 	@Override
 	public void tick() {
-		// TODO Auto-generated method stub
+		// TODO Ghost A.I. will be implemented later (if ever)
 		
 	}
 
@@ -65,6 +66,12 @@ public class Ghost implements Entity {
 	public float getRotation() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public EntityType getType() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

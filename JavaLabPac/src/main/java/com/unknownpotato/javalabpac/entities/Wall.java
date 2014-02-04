@@ -8,12 +8,14 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.unknownpotato.javalabpac.enums.CollisionType;
 import com.unknownpotato.javalabpac.enums.Direction;
+import com.unknownpotato.javalabpac.enums.EntityType;
 
 public class Wall implements Entity {
 	
 	private World world;
 	private Sprite sprite;
 	private Body body;
+	private final EntityType type = EntityType.WALL;
 
 	public Wall(Vector2 pos, World world, Sprite sprite){
 		this.world = world;
@@ -89,6 +91,12 @@ public class Wall implements Entity {
 	public void dispose() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public EntityType getType() {
+		// TODO Auto-generated method stub
+		return this.type;
 	}
 	
 }
