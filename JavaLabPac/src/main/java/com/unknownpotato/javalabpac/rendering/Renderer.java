@@ -37,11 +37,11 @@ public class Renderer implements Disposable {
 		batch.begin();
 		for (Entity entity : list) {
 			Vector2 pos = entity.getPos();
-			Sprite texture = entity.getSprite();
+			Sprite sprite = entity.getSprite();
 			float w = entity.getSize();
 			float h = entity.getSize();
 			// edit to make sprites scale smaller
-			batch.draw(texture, pos.x - w / 2, pos.y - h / 2, w / 2, h / 2, w,
+			batch.draw(sprite, pos.x - w, pos.y - h, w, h , w,
 					h, 1f, 1f, entity.getRotation());
 		}
 		batch.end();

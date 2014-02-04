@@ -35,6 +35,7 @@ public class Game implements ApplicationListener, ContactListener {
 	private Wall wall;
 	private Renderer renderer;
 	private Box2DDebugRenderer debug;
+	private ArrayList<Entity> entitylist;
 	
 	@Override
 	public void create() {
@@ -48,6 +49,9 @@ public class Game implements ApplicationListener, ContactListener {
 		this.wall = new Wall(new Vector2(0f,10f),this.world, pac);
 		this.height = Gdx.graphics.getHeight();
 		this.width = Gdx.graphics.getWidth();
+		this.entitylist = new ArrayList<Entity>();
+		this.entitylist.add(this.pacman);
+		this.entitylist.add(wall);
 		
 	}
 
@@ -69,6 +73,8 @@ public class Game implements ApplicationListener, ContactListener {
 //		batch.begin();
 //		batch.draw(this.pacman.getSprite().getTexture(), 1f, 1f);
 //		batch.end();
+		this.debug.render(this.world, this.renderer.getView().getCamera().combined.cpy());
+		this.renderer.render(this.entitylist);
 		this.world.step(1, 10, 10);
 		this.pacman.tick();
 		System.out.println(this.pacman.getPos());
@@ -89,6 +95,7 @@ public class Game implements ApplicationListener, ContactListener {
 	@Override
 	public void dispose() {
 		// TODO Auto-generated method stub
+		this.renderer.dispose();
 
 	}
 
