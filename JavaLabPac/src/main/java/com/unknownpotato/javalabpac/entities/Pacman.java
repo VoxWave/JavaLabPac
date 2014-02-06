@@ -51,7 +51,7 @@ public class Pacman implements Entity {
 
 	@Override
 	public Vector2 getPos() {
-		return this.body.getPosition();
+		return this.body.getWorldCenter();
 	}
 
 	@Override
@@ -77,16 +77,16 @@ public class Pacman implements Entity {
 		// TODO Auto-generated method stub
 		switch(direction){
 		case UP:
-			this.body.applyForceToCenter(new Vector2(0,1), true);
+			this.body.applyForceToCenter(new Vector2(0f,1f), true);
 			break;
 		case DOWN:
-			this.body.applyForceToCenter(new Vector2(0,-1), true);
+			this.body.applyForceToCenter(new Vector2(0f,-1f), true);
 			break;
 		case LEFT:
-			this.body.applyForceToCenter(new Vector2(-1,0), true);
+			this.body.applyForceToCenter(new Vector2(-1f,0f), true);
 			break;
 		case RIGHT:
-			this.body.applyForceToCenter(new Vector2(1,0), true);
+			this.body.applyForceToCenter(new Vector2(1f,0f), true);
 			break;
 		default:
 			break;
@@ -99,13 +99,13 @@ public class Pacman implements Entity {
 		if (Gdx.input.isKeyPressed(Keys.W)) {
 			this.move(Direction.UP);
 		}
-		if (Gdx.input.isKeyPressed(Keys.A)) {
+		else if (Gdx.input.isKeyPressed(Keys.A)) {
 			this.move(Direction.LEFT);
 		}
-		if (Gdx.input.isKeyPressed(Keys.S)) {
+		else if (Gdx.input.isKeyPressed(Keys.S)) {
 			this.move(Direction.DOWN);
 		}
-		if (Gdx.input.isKeyPressed(Keys.D)) {
+		else if (Gdx.input.isKeyPressed(Keys.D)) {
 			this.move(Direction.RIGHT);
 		}
 	}
@@ -122,7 +122,7 @@ public class Pacman implements Entity {
 
 		PolygonShape shape = new PolygonShape();
 		shape.setAsBox(1, 1);
-		this.body.createFixture(shape, 0.00001f);
+		this.body.createFixture(shape, 2f);
 		shape.dispose();
 	}
 
