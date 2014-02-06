@@ -9,6 +9,8 @@ import com.unknownpotato.javalabpac.enums.EntityType;
 import com.unknownpotato.javalabpac.interfaces.Entity;
 
 public class Ghost implements Entity {
+	
+	private EntityType ghost;
 
 	@Override
 	public void tick() {

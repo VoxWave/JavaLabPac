@@ -9,6 +9,8 @@ import com.unknownpotato.javalabpac.enums.EntityType;
 import com.unknownpotato.javalabpac.interfaces.Entity;
 
 public class Pill implements Entity {
+	
+	private EntityType pill;
 
 	@Override
 	public void tick() {
@@ -27,11 +29,17 @@ public class Pill implements Entity {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	/**
+	 * This method is needed for identifying what type of entity has collided with an entity.
+	 * this is because we need to know if a ghost or pacman collided with a pill so that we can
+	 * deal with the collision appropriately.
+	 */
 
 	@Override
 	public EntityType getType() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.pill;
 	}
 
 	@Override

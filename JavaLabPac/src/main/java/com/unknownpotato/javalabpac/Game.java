@@ -73,8 +73,9 @@ public class Game implements ApplicationListener, ContactListener {
 //		batch.begin();
 //		batch.draw(this.pacman.getSprite().getTexture(), 1f, 1f);
 //		batch.end();
-		this.debug.render(this.world, this.renderer.getView().getCamera().combined.cpy());
+		
 		this.renderer.render(this.entitylist);
+		this.debug.render(this.world, this.renderer.getView().getCamera().combined.cpy());
 		this.world.step(1, 10, 10);
 		this.pacman.tick();
 		System.out.println(this.pacman.getPos());

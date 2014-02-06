@@ -32,6 +32,7 @@ public class Renderer implements Disposable {
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		Gdx.gl.glViewport(0, 0, width, height);
+		this.view.beforeRender();
 		batch.setProjectionMatrix(view.getCamera().combined);
 
 		batch.begin();

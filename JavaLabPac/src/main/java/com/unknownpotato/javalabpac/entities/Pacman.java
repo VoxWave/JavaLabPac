@@ -146,7 +146,7 @@ public class Pacman implements Entity {
 	@Override
 	public EntityType getType() {
 		// TODO Auto-generated method stub
-		return null;
+		return EntityType.PACMAN;
 	}
 
 }
