@@ -23,6 +23,15 @@ import com.unknownpotato.javalabpac.enums.CollisionType;
 import com.unknownpotato.javalabpac.interfaces.Entity;
 import com.unknownpotato.javalabpac.rendering.Renderer;
 
+/**
+ * 
+ * @author VoxWave
+ * 
+ * Game is basically the libGDX equivalent of a main method.
+ * the render method is called everytime the system renders the screen. 
+ * we also run the logic part of the game in the render method.
+ *
+ */
 
 public class Game implements ApplicationListener, ContactListener {
 	
@@ -36,6 +45,7 @@ public class Game implements ApplicationListener, ContactListener {
 	private Renderer renderer;
 	private Box2DDebugRenderer debug;
 	private ArrayList<Entity> entitylist;
+	private Wall wall2;
 	
 	@Override
 	public void create() {
@@ -46,7 +56,8 @@ public class Game implements ApplicationListener, ContactListener {
 		this.world = new World(new Vector2() , true);
 		Sprite pac = new Sprite(new Texture(Gdx.files.getFileHandle("rsc/Pacman.png", FileType.Internal)));
 		this.pacman = new Pacman(new Vector2(),this.world, pac);
-		this.wall = new Wall(new Vector2(0f,10f),this.world, pac);
+		this.wall = new Wall(new Vector2(0f,14f),this.world, pac);
+		this.wall2 = new Wall(new Vector2(2f,14f),this.world, pac);
 		this.height = Gdx.graphics.getHeight();
 		this.width = Gdx.graphics.getWidth();
 		this.entitylist = new ArrayList<Entity>();

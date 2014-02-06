@@ -79,7 +79,7 @@ public class Wall implements Entity {
 	@Override
 	public float getSize() {
 		
-		return 0;
+		return 2;
 	}
 
 	@Override
