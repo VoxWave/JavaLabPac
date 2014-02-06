@@ -23,7 +23,10 @@ import com.unknownpotato.javalabpac.interfaces.Entity;
  * 
  * @author local
  *
- *	Pacman is the hero of the gamem
+ *	Pacman is the hero of the game.
+ *	pacman collects pills and avoids the ghosts.
+ *	pacman is an entity
+ *	the pacman class handles pacmans moving logic and contains pacmans body and pacmans sprite.
  */
 
 public class Pacman implements Entity {
