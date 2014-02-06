@@ -7,6 +7,13 @@ import com.unknownpotato.javalabpac.entities.Pacman;
 import com.unknownpotato.javalabpac.entities.Wall;
 import com.unknownpotato.javalabpac.interfaces.Tickable;
 
+/**
+ * 
+ * @author local
+ *
+ * Level contains a list of entities that make up the level.
+ * basically it contains the walls for the level
+ */
 public class Level implements Tickable {
 	
 	private World world;
