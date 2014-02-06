@@ -9,7 +9,7 @@ import com.unknownpotato.javalabpac.interfaces.Tickable;
 
 /**
  * 
- * @author local
+ * @author VoxWave
  *
  * Level contains a list of entities that make up the level.
  * basically it contains the  pacman, walls, pills and ghost.

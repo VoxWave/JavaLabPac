@@ -19,6 +19,13 @@ import com.unknownpotato.javalabpac.enums.Direction;
 import com.unknownpotato.javalabpac.enums.EntityType;
 import com.unknownpotato.javalabpac.interfaces.Entity;
 
+/**
+ * 
+ * @author local
+ *
+ *	Pacman is the hero of the gamem
+ */
+
 public class Pacman implements Entity {
 	
 	private Sprite sprite;

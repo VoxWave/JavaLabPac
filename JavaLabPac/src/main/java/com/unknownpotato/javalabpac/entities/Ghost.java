@@ -1,5 +1,7 @@
 package com.unknownpotato.javalabpac.entities;
 
+
+
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -7,6 +9,15 @@ import com.unknownpotato.javalabpac.enums.CollisionType;
 import com.unknownpotato.javalabpac.enums.Direction;
 import com.unknownpotato.javalabpac.enums.EntityType;
 import com.unknownpotato.javalabpac.interfaces.Entity;
+
+/**
+ * 
+ * @author local
+ *
+ *	this class is the implementation of the ghost in pacman.
+ *  It is an entity. when pacman collides with it, pacman should die.
+ *
+ */
 
 public class Ghost implements Entity {
 	

@@ -1,5 +1,12 @@
 package com.unknownpotato.javalabpac;
 
+/**
+ * 
+ * @author VoxWave
+ *
+ * This class keeps track of your score and pacmans lives.
+ */
+
 public class Stats {
 	
 	private long score;
