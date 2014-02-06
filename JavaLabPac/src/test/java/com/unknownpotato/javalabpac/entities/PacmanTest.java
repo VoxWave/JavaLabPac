@@ -43,67 +43,51 @@ public class PacmanTest {
 	}
 	
 	@Test
-	public void pacmanMovesUP() {
+	public void pacmanDoesNotMoveAtStarttest() {
+		float x1 = this.pacman.getPos().x;
+		float y1 = this.pacman.getPos().y;
+		this.world.step(1, 10, 10);
+		float x2 = this.pacman.getPos().x;
+		float y2 = this.pacman.getPos().y;
+	}
+	
+	public boolean pacmanMoved(Direction dir) {
 		float x1 = this.pacman.getPos().x;
 		float y1 = this.pacman.getPos().y;
 		
-		moveStep(Direction.UP);
+		moveStep(dir);
 		
 		float x2 = this.pacman.getPos().x;
 		float y2 = this.pacman.getPos().y;
 		
-		assertTrue(x2 == x1 && y2 > y1);
+		switch (dir) {
+			case UP: return (x2 == x1 && y2 > y1);
+			case DOWN: return (x2 == x1 && y2 < y1);
+			case LEFT: return (x2 < x1 && y2 == y1);
+			case RIGHT: return (x2 > x1 && y2 == y1);
+			default: return false;
+		}
+		
+	}
+	
+	@Test
+	public void pacmanMovesUP() {
+		assertTrue(pacmanMoved(Direction.UP));
 	}
 	
 	@Test
 	public void pacmanMovesDOWN() {
-		float x1 = this.pacman.getPos().x;
-		float y1 = this.pacman.getPos().y;
-		boolean isCorrect = false;
-		
-		moveStep(Direction.DOWN);
-		
-		float x2 = this.pacman.getPos().x;
-		float y2 = this.pacman.getPos().y;
-		
-		if(x2 == x1 && y2 < y1){
-			isCorrect = true;
-		}
-		assertTrue(isCorrect);
+		assertTrue(pacmanMoved(Direction.DOWN));
 	}
 	
 	@Test
 	public void pacmanMovesLEFT() {
-		float x1 = this.pacman.getPos().x;
-		float y1 = this.pacman.getPos().y;
-		boolean isCorrect = false;
-		
-		moveStep(Direction.LEFT);
-		
-		float x2 = this.pacman.getPos().x;
-		float y2 = this.pacman.getPos().y;
-		
-		if(x2 < x1 && y2 == y1){
-			isCorrect = true;
-		}
-		assertTrue(isCorrect);
+		assertTrue(pacmanMoved(Direction.LEFT));
 	}
 	
 	@Test
 	public void pacmanMovesRIGHT() {
-		float x1 = this.pacman.getPos().x;
-		float y1 = this.pacman.getPos().y;
-		boolean isCorrect = false;
-		
-		moveStep(Direction.RIGHT);
-		
-		float x2 = this.pacman.getPos().x;
-		float y2 = this.pacman.getPos().y;
-		
-		if(x2 > x1 && y2 == y1){
-			isCorrect = true;
-		}
-		assertTrue(isCorrect);
+		assertTrue(pacmanMoved(Direction.RIGHT));
 	}
 	
 	//this next test may seem like a stupid test but I actually found error by writing this test :D

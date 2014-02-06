@@ -17,10 +17,10 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
-import com.unknownpotato.javalabpac.entities.Entity;
 import com.unknownpotato.javalabpac.entities.Pacman;
 import com.unknownpotato.javalabpac.entities.Wall;
 import com.unknownpotato.javalabpac.enums.CollisionType;
+import com.unknownpotato.javalabpac.interfaces.Entity;
 import com.unknownpotato.javalabpac.rendering.Renderer;
 
 

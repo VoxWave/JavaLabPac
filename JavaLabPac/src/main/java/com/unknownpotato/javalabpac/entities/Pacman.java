@@ -17,6 +17,7 @@ import com.unknownpotato.javalabpac.Level;
 import com.unknownpotato.javalabpac.enums.CollisionType;
 import com.unknownpotato.javalabpac.enums.Direction;
 import com.unknownpotato.javalabpac.enums.EntityType;
+import com.unknownpotato.javalabpac.interfaces.Entity;
 
 public class Pacman implements Entity {
 	

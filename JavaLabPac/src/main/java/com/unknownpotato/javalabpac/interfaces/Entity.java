@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package com.unknownpotato.javalabpac.entities;
+package com.unknownpotato.javalabpac.interfaces;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
@@ -14,7 +14,6 @@ import com.unknownpotato.javalabpac.entities.*;
 import com.unknownpotato.javalabpac.enums.CollisionType;
 import com.unknownpotato.javalabpac.enums.Direction;
 import com.unknownpotato.javalabpac.enums.EntityType;
-import com.unknownpotato.javalabpac.interfaces.Tickable;
 
 /**
  *

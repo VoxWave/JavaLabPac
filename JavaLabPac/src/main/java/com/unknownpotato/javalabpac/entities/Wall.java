@@ -9,6 +9,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.unknownpotato.javalabpac.enums.CollisionType;
 import com.unknownpotato.javalabpac.enums.Direction;
 import com.unknownpotato.javalabpac.enums.EntityType;
+import com.unknownpotato.javalabpac.interfaces.Entity;
 
 public class Wall implements Entity {
 	

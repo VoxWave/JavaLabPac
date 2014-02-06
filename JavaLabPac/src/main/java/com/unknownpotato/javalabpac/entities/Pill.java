@@ -8,16 +8,17 @@ import com.unknownpotato.javalabpac.enums.Direction;
 import com.unknownpotato.javalabpac.enums.EntityType;
 import com.unknownpotato.javalabpac.interfaces.Entity;
 
-public class Ghost implements Entity {
+public class Pill implements Entity {
 
 	@Override
 	public void tick() {
-		// TODO Ghost A.I. will be implemented later (if ever)
+		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void dispose() {
+		// TODO Auto-generated method stub
 		
 	}
 
@@ -25,6 +26,12 @@ public class Ghost implements Entity {
 	public void createBody(Vector2 pos) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public EntityType getType() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
@@ -67,12 +74,6 @@ public class Ghost implements Entity {
 	public float getRotation() {
 		// TODO Auto-generated method stub
 		return 0;
-	}
-
-	@Override
-	public EntityType getType() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

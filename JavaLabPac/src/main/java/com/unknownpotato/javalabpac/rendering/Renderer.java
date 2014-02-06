@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Disposable;
-import com.unknownpotato.javalabpac.entities.Entity;
+import com.unknownpotato.javalabpac.interfaces.Entity;
 
 public class Renderer implements Disposable {
 	
