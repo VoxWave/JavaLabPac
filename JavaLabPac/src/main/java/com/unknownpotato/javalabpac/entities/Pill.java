@@ -12,6 +12,16 @@ import com.unknownpotato.javalabpac.enums.Direction;
 import com.unknownpotato.javalabpac.enums.EntityType;
 import com.unknownpotato.javalabpac.interfaces.Entity;
 
+/**
+ * 
+ * @author local
+ *
+ * pills are what pacman eats. 
+ * pills are sensors that detect collision with pacman, 
+ * then increase the score and destroy themselves
+ *
+ */
+
 public class Pill implements Entity {
 	
 	private EntityType pill;

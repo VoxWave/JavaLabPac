@@ -11,6 +11,14 @@ import com.unknownpotato.javalabpac.enums.Direction;
 import com.unknownpotato.javalabpac.enums.EntityType;
 import com.unknownpotato.javalabpac.interfaces.Entity;
 
+/**
+ * 
+ * @author local
+ *
+ *	the wall is a static object. walls only purpose is to stop pacman moving through it.
+ *
+ */
+
 public class Wall implements Entity {
 	
 	private World world;
