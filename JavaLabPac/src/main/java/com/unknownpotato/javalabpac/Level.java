@@ -12,7 +12,9 @@ import com.unknownpotato.javalabpac.interfaces.Tickable;
  * @author local
  *
  * Level contains a list of entities that make up the level.
- * basically it contains the walls for the level
+ * basically it contains the  pacman, walls, pills and ghost.
+ * this class is for easy rendering and ticking of entities.
+ * this class also contains a Stats object which keeps track of pacmans lives and the score.
  */
 public class Level implements Tickable {
 	
