@@ -36,33 +36,30 @@ import com.unknownpotato.javalabpac.rendering.Renderer;
 public class Game implements ApplicationListener, ContactListener {
 	
 	private Level level;
-	private SpriteBatch batch;
 	private int width;
 	private int height;
-	private Pacman pacman;
-	private World world;
-	private Wall wall;
 	private Renderer renderer;
 	private Box2DDebugRenderer debug;
-	private ArrayList<Entity> entitylist;
-	private Wall wall2;
 	
 	@Override
 	public void create() {
-		// TODO Auto-generated method stub
+		
+		//these are the two renderers we use. 
+		//renderer renders sprites
+		//debug renders the physics engines bodies (its used for debuging ofc) 
 		this.renderer = new Renderer();
 		this.debug = new Box2DDebugRenderer(true, true, true, true, true, true);
-		this.batch = new SpriteBatch();
-		this.world = new World(new Vector2() , true);
+		
+		//load up all the sprites
 		Sprite pac = new Sprite(new Texture(Gdx.files.getFileHandle("rsc/Pacman.png", FileType.Internal)));
-		this.pacman = new Pacman(new Vector2(),this.world, pac);
-		this.wall = new Wall(new Vector2(0f,14f),this.world, pac);
-		this.wall2 = new Wall(new Vector2(2f,14f),this.world, pac);
+		Sprite pill = new Sprite(new Texture(Gdx.files.getFileHandle("rsc/Pacman.png", FileType.Internal)));
+		Sprite ghost = new Sprite(new Texture(Gdx.files.getFileHandle("rsc/Pacman.png", FileType.Internal)));
+		Sprite wall = new Sprite(new Texture(Gdx.files.getFileHandle("rsc/Pacman.png", FileType.Internal)));
+		
+		this.level = new Level(pac, wall, pill, ghost);
+		
 		this.height = Gdx.graphics.getHeight();
 		this.width = Gdx.graphics.getWidth();
-		this.entitylist = new ArrayList<Entity>();
-		this.entitylist.add(this.pacman);
-		this.entitylist.add(wall);
 		
 	}
 
@@ -77,19 +74,9 @@ public class Game implements ApplicationListener, ContactListener {
 
 	@Override
 	public void render() {
-		// TODO Auto-generated method stub
-//		Gdx.gl.glClearColor(1, 1, 1, 1);
-//		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
-//		Gdx.gl.glViewport(0, 0, width, height);
-//		batch.begin();
-//		batch.draw(this.pacman.getSprite().getTexture(), 1f, 1f);
-//		batch.end();
-		
-		this.renderer.render(this.entitylist);
-		this.debug.render(this.world, this.renderer.getView().getCamera().combined.cpy());
-		this.world.step(1, 10, 10);
-		this.pacman.tick();
-		System.out.println(this.pacman.getPos());
+		this.renderer.render(this.level.getEntities());
+		this.debug.render(this.level.getWorld(), this.renderer.getView().getCamera().combined.cpy());
+		this.level.tick();
 	}
 
 	@Override
@@ -97,7 +84,7 @@ public class Game implements ApplicationListener, ContactListener {
 		// TODO Auto-generated method stub
 
 	}
-
+	
 	@Override
 	public void resume() {
 		// TODO Auto-generated method stub
@@ -108,6 +95,7 @@ public class Game implements ApplicationListener, ContactListener {
 	public void dispose() {
 		// TODO Auto-generated method stub
 		this.renderer.dispose();
+		this.level.dispose();
 
 	}
 

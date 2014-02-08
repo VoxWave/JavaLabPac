@@ -1,10 +1,15 @@
 package com.unknownpotato.javalabpac;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Disposable;
 import com.unknownpotato.javalabpac.entities.Pacman;
 import com.unknownpotato.javalabpac.entities.Wall;
+import com.unknownpotato.javalabpac.interfaces.Entity;
 import com.unknownpotato.javalabpac.interfaces.Tickable;
 
 /**
@@ -16,11 +21,12 @@ import com.unknownpotato.javalabpac.interfaces.Tickable;
  * this class is for easy rendering and ticking of entities.
  * this class also contains a Stats object which keeps track of pacmans lives and the score.
  */
-public class Level implements Tickable {
+public class Level implements Tickable, Disposable {
 	
 	private World world;
 	private Pacman pacman;
 	private Stats stats;
+	private ArrayList<Entity> entitylist;
 	
 	public Level(Sprite pacman, Sprite wall, Sprite pill, Sprite ghost){
 		this.world = new World(new Vector2(), true);
@@ -41,6 +47,19 @@ public class Level implements Tickable {
 	public Stats getStats() {
 		// TODO Auto-generated method stub
 		return this.stats;
+	}
+
+	public List<Entity> getEntities() {
+		// TODO Auto-generated method stub
+		return this.entitylist;
+	}
+
+	@Override
+	public void dispose() {
+		for(Entity e : this.entitylist){
+			e.dispose();
+		}
+		
 	}
 
 }
