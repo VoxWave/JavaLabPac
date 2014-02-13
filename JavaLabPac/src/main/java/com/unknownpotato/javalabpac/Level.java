@@ -78,6 +78,7 @@ public class Level implements Tickable, Disposable, ContactListener {
 	}
 
 	public void tick(){
+		updateEntities();
 		this.world.step(1, 10, 10);
 		pacman.tick();
 	}
@@ -102,6 +103,10 @@ public class Level implements Tickable, Disposable, ContactListener {
 		for(Entity e : this.entitylist){
 			e.dispose();
 		}
+		
+	}
+	
+	public void updateEntities(){
 		
 	}
 

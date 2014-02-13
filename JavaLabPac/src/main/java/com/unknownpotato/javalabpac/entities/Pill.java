@@ -46,7 +46,7 @@ public class Pill implements Entity {
 
 	@Override
 	public void dispose() {
-		// TODO Auto-generated method stub
+		this.level.getWorld().destroyBody(this.body);
 		
 		
 	}
@@ -104,6 +104,8 @@ public class Pill implements Entity {
 		if(type == type.START) {
 			if(entityB.getType() == EntityType.PACMAN) {
 				this.level.getStats().addScore();
+//				this.level.getEntities().remove(this);
+//				this.dispose();
 			}
 		}
 	}
