@@ -33,7 +33,7 @@ import com.unknownpotato.javalabpac.rendering.Renderer;
  *
  */
 
-public class Game implements ApplicationListener, ContactListener {
+public class Game implements ApplicationListener {
 	
 	private Level level;
 	private int width;
@@ -100,39 +100,7 @@ public class Game implements ApplicationListener, ContactListener {
 
 	}
 
-	@Override
-	public void beginContact(Contact contact) {
-		// TODO Auto-generated method stub
-		doContact(contact,CollisionType.START);
-	}
-
-	@Override
-	public void endContact(Contact contact) {
-		// TODO Auto-generated method stub
-		doContact(contact,CollisionType.END);
-		
-	}
 	
-	private void doContact(Contact contact, CollisionType type) {
-		Body bodyA = contact.getFixtureA().getBody();
-		Body bodyB = contact.getFixtureB().getBody();
-		Entity entityA = (Entity) bodyA.getUserData();
-		Entity entityB = (Entity) bodyB.getUserData();
-		entityA.collide(entityB, type);
-		entityB.collide(entityA, type);
-	}
-
-	@Override
-	public void preSolve(Contact contact, Manifold oldManifold) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void postSolve(Contact contact, ContactImpulse impulse) {
-		// TODO Auto-generated method stub
-		
-	}
 
 
 }

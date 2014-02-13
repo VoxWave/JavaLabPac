@@ -5,11 +5,17 @@ import java.util.List;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.Contact;
+import com.badlogic.gdx.physics.box2d.ContactImpulse;
+import com.badlogic.gdx.physics.box2d.ContactListener;
+import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Disposable;
 import com.unknownpotato.javalabpac.entities.Pacman;
 import com.unknownpotato.javalabpac.entities.Pill;
 import com.unknownpotato.javalabpac.entities.Wall;
+import com.unknownpotato.javalabpac.enums.CollisionType;
 import com.unknownpotato.javalabpac.interfaces.Entity;
 import com.unknownpotato.javalabpac.interfaces.Tickable;
 
@@ -22,7 +28,7 @@ import com.unknownpotato.javalabpac.interfaces.Tickable;
  * this class is for easy rendering and ticking of entities.
  * this class also contains a Stats object which keeps track of pacmans lives and the score.
  */
-public class Level implements Tickable, Disposable {
+public class Level implements Tickable, Disposable, ContactListener {
 	
 	private World world;
 	private Pacman pacman;
@@ -37,12 +43,13 @@ public class Level implements Tickable, Disposable {
 		this.stats = new Stats();
 		this.entitylist = new ArrayList<Entity>();
 		this.world = new World(new Vector2(), true);
+		this.world.setContactListener(this);
 		this.pacsprite = pacman;
 		this.pacman = new Pacman(new Vector2(),this.world, this.pacsprite);
 		this.entitylist.add(this.pacman);
 		this.wall = wall;
 		this.pill = pill;
-		this.entitylist.add(new Pill(new Vector2(4f,4f), this.world, this.pill));
+		this.entitylist.add(new Pill(new Vector2(4f,4f), this, this.pill));
 		createWalls();
 	}
 	
@@ -95,6 +102,40 @@ public class Level implements Tickable, Disposable {
 		for(Entity e : this.entitylist){
 			e.dispose();
 		}
+		
+	}
+
+	@Override
+	public void beginContact(Contact contact) {
+		// TODO Auto-generated method stub
+		doContact(contact,CollisionType.START);
+	}
+
+	@Override
+	public void endContact(Contact contact) {
+		// TODO Auto-generated method stub
+		doContact(contact,CollisionType.END);
+		
+	}
+	
+	private void doContact(Contact contact, CollisionType type) {
+		Body bodyA = contact.getFixtureA().getBody();
+		Body bodyB = contact.getFixtureB().getBody();
+		Entity entityA = (Entity) bodyA.getUserData();
+		Entity entityB = (Entity) bodyB.getUserData();
+		entityA.collide(entityB, type);
+		entityB.collide(entityA, type);
+	}
+
+	@Override
+	public void preSolve(Contact contact, Manifold oldManifold) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void postSolve(Contact contact, ContactImpulse impulse) {
+		// TODO Auto-generated method stub
 		
 	}
 

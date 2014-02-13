@@ -29,12 +29,11 @@ public class Pill implements Entity {
 	
 	private EntityType pill;
 	private Level level;
-	private World world;
 	private Sprite sprite;
 	private Body body;
 	
-	public Pill(Vector2 pos, World world, Sprite sprite) {
-		this.world = world;
+	public Pill(Vector2 pos, Level level, Sprite sprite) {
+		this.level = level;
 		this.sprite = sprite;
 		this.createBody(pos);
 	}
@@ -61,7 +60,7 @@ public class Pill implements Entity {
 		bodyDef.position.set(pos);
 
 		// Create our body in the world using our body definition
-		body = this.world.createBody(bodyDef);
+		body = this.level.getWorld().createBody(bodyDef);
 		body.setUserData(this);
 
 		CircleShape shape = new CircleShape();
@@ -101,13 +100,12 @@ public class Pill implements Entity {
 
 	@Override
 	public void collide(Entity entityB, CollisionType type) {
-		// TODO Auto-generated method stub
-		if(type == CollisionType.START) {
+		System.out.println(entityB);
+		if(type == type.START) {
 			if(entityB.getType() == EntityType.PACMAN) {
 				this.level.getStats().addScore();
 			}
 		}
-		
 	}
 
 	@Override
