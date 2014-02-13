@@ -87,16 +87,16 @@ public class Pacman implements Entity {
 		// TODO Auto-generated method stub
 		switch(direction){
 		case UP:
-			this.body.applyForceToCenter(new Vector2(0f,1f), true);
+			this.body.applyForceToCenter(new Vector2(0f,0.0000001f), true);
 			break;
 		case DOWN:
-			this.body.applyForceToCenter(new Vector2(0f,-1f), true);
+			this.body.applyForceToCenter(new Vector2(0f,-0.0000001f), true);
 			break;
 		case LEFT:
-			this.body.applyForceToCenter(new Vector2(-1f,0f), true);
+			this.body.applyForceToCenter(new Vector2(-0.0000001f,0f), true);
 			break;
 		case RIGHT:
-			this.body.applyForceToCenter(new Vector2(1f,0f), true);
+			this.body.applyForceToCenter(new Vector2(0.0000001f,0f), true);
 			break;
 		default:
 			break;
@@ -132,7 +132,8 @@ public class Pacman implements Entity {
 
 		PolygonShape shape = new PolygonShape();
 		shape.setAsBox(1, 1);
-		this.body.createFixture(shape, 2f);
+		
+		this.body.createFixture(shape, 0.000001f);
 		shape.dispose();
 	}
 

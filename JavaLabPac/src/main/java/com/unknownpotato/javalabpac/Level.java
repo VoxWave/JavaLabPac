@@ -26,14 +26,46 @@ public class Level implements Tickable, Disposable {
 	private World world;
 	private Pacman pacman;
 	private Stats stats;
+	private Sprite pacsprite;
+	private Sprite wall;
+	private Sprite pill;
+	private Sprite ghost;
 	private ArrayList<Entity> entitylist;
 	
 	public Level(Sprite pacman, Sprite wall, Sprite pill, Sprite ghost){
+		this.entitylist = new ArrayList<Entity>();
 		this.world = new World(new Vector2(), true);
-		this.pacman = new Pacman(new Vector2(),this.world, pacman);
-		Wall seina = new Wall(new Vector2(0f,14f),this.world, wall);
+		this.pacsprite = pacman;
+		this.pacman = new Pacman(new Vector2(),this.world, this.pacsprite);
+		this.entitylist.add(this.pacman);
+		this.wall = wall;
+		createWalls();
 	}
 	
+	/**
+	 * createWalls is a method for creating the wall I.E creating the map.
+	 * it is currently hardcoded
+	 */
+	private void createWalls() {
+		 //lisätään yläseinämä
+		for(float i = -21f; i<21f ; i+=2){
+			this.entitylist.add(new Wall(new Vector2(i,14f),this.world, this.wall));
+		}
+		//lisätään alaseinämä
+		for(float i = -21f; i<21f ; i+=2){
+			this.entitylist.add(new Wall(new Vector2(i,-14f),this.world, this.wall));
+		}
+		//lisätään oikeaseinämä
+		for(float i = -14f; i<14f ; i+=2){
+			this.entitylist.add(new Wall(new Vector2(-19f, i),this.world, this.wall));
+		}
+		//lisätään vasenseinämä
+		for(float i = -14f; i<14f ; i+=2){
+			this.entitylist.add(new Wall(new Vector2(19f, i),this.world, this.wall));
+		}
+		
+	}
+
 	public void tick(){
 		this.world.step(1, 10, 10);
 		pacman.tick();
