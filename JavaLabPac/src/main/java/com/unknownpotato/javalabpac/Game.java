@@ -77,6 +77,7 @@ public class Game implements ApplicationListener, ContactListener {
 		this.renderer.render(this.level.getEntities());
 		this.debug.render(this.level.getWorld(), this.renderer.getView().getCamera().combined.cpy());
 		this.level.tick();
+		System.out.println(this.level.getStats());
 	}
 
 	@Override

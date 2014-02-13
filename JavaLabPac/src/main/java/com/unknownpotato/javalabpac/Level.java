@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Disposable;
 import com.unknownpotato.javalabpac.entities.Pacman;
+import com.unknownpotato.javalabpac.entities.Pill;
 import com.unknownpotato.javalabpac.entities.Wall;
 import com.unknownpotato.javalabpac.interfaces.Entity;
 import com.unknownpotato.javalabpac.interfaces.Tickable;
@@ -33,12 +34,15 @@ public class Level implements Tickable, Disposable {
 	private ArrayList<Entity> entitylist;
 	
 	public Level(Sprite pacman, Sprite wall, Sprite pill, Sprite ghost){
+		this.stats = new Stats();
 		this.entitylist = new ArrayList<Entity>();
 		this.world = new World(new Vector2(), true);
 		this.pacsprite = pacman;
 		this.pacman = new Pacman(new Vector2(),this.world, this.pacsprite);
 		this.entitylist.add(this.pacman);
 		this.wall = wall;
+		this.pill = pill;
+		this.entitylist.add(new Pill(new Vector2(4f,4f), this.world, this.pill));
 		createWalls();
 	}
 	
@@ -93,5 +97,6 @@ public class Level implements Tickable, Disposable {
 		}
 		
 	}
+
 
 }

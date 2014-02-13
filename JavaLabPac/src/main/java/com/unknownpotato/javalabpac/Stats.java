@@ -27,5 +27,10 @@ public class Stats {
 	public void reduceLives(){
 		lives--;
 	}
+	
+	@Override
+	public String toString(){
+		return this.lives+", "+this.score;
+	}
 
 }

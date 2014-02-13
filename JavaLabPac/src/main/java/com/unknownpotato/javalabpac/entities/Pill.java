@@ -4,8 +4,11 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.unknownpotato.javalabpac.Level;
 import com.unknownpotato.javalabpac.enums.CollisionType;
 import com.unknownpotato.javalabpac.enums.Direction;
@@ -46,21 +49,29 @@ public class Pill implements Entity {
 	public void dispose() {
 		// TODO Auto-generated method stub
 		
+		
 	}
 
 	@Override
 	public void createBody(Vector2 pos) {
-		BodyDef def = new BodyDef();
-		def.type = BodyDef.BodyType.StaticBody;
-		def.position.set(pos);
+		BodyDef bodyDef = new BodyDef();
 
-		body = this.world.createBody(def);
+		bodyDef.type = BodyType.StaticBody;
+
+		bodyDef.position.set(pos);
+
+		// Create our body in the world using our body definition
+		body = this.world.createBody(bodyDef);
 		body.setUserData(this);
 
-		PolygonShape rockBox = new PolygonShape();
-		rockBox.setAsBox(1f, 1f);
-		body.createFixture(rockBox, 0.0f);
-		rockBox.dispose();
+		CircleShape shape = new CircleShape();
+		shape.setRadius(0.5f);
+		FixtureDef def = new FixtureDef();
+		def.isSensor = true;
+		def.density = 0.0f;
+		def.shape = shape;
+		body.createFixture(def);
+		shape.dispose();
 		
 	}
 	
@@ -79,7 +90,7 @@ public class Pill implements Entity {
 	@Override
 	public Vector2 getPos() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.body.getPosition();
 	}
 
 	@Override
@@ -102,7 +113,7 @@ public class Pill implements Entity {
 	@Override
 	public Sprite getSprite() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.sprite;
 	}
 
 	@Override
@@ -114,7 +125,7 @@ public class Pill implements Entity {
 	@Override
 	public float getSize() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 2;
 	}
 
 	@Override

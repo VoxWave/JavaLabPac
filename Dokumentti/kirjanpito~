@@ -4,4 +4,4 @@ n.1 h projektin valmistelua (projekti on eclipse projekti jossa käytän libGDX 
 30.01.2014 12:00-19:30 koodasin projektia ja tein päivitetyn luokkakaavion josta unohdin ghostiiin liittyvän ai luokan (commitesta pitäisi näkyä kuinka paljon on tehty) olen varmaan tehnyt pieniä muutoksia aiemmin viikolla.
 
 06.02.2014 olen tällä viikolla koodaillut hajanaisesti. kävin iltapajassa. laittamani sekvenssikaavio on tapauksesta kun halutaan liikkua oikealle.
-nyt renderöinti toimii. ruudulle renderöidään sekä entityn sprite että entityn body box2ddebugrendererillä. laitoin pillerin collision metodiin logiikkaa mitä pitäisi tapahtua kun pilleri osuu 
+nyt renderöinti toimii. ruudulle renderöidään sekä entityn sprite että entityn body box2ddebugrendererillä. laitoin pillerin collision metodiin logiikkaa mitä pitäisi tapahtua kun pilleri osuu pacmaniin.tavoitteena olisi saada Game luokasta siirrettyä tavaraa level luokkaan. en ole siis varma tuntimäärästä mutta varmaan se on jossain 1h-5h välillä. todennäköisesti enemmän 1h puolella.
