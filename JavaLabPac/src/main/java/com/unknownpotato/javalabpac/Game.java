@@ -41,6 +41,10 @@ public class Game implements ApplicationListener {
 	private Renderer renderer;
 	private Box2DDebugRenderer debug;
 	
+	
+	/**
+	 * create is so
+	 */
 	@Override
 	public void create() {
 		
