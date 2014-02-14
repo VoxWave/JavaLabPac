@@ -43,7 +43,8 @@ public class Game implements ApplicationListener {
 	
 	
 	/**
-	 * create is so
+	 * create is sort of comparable to a constructor.
+	 * basically we setup everything needed in it
 	 */
 	@Override
 	public void create() {
@@ -66,6 +67,13 @@ public class Game implements ApplicationListener {
 		this.width = Gdx.graphics.getWidth();
 		
 	}
+	
+	/**
+	 * resize method is called when you resize the game window.
+	 * if the game has things that are dependent on the screen size, 
+	 * you can do changes here to prevent a complete breakdown of the gui.
+	 * (breakdown in this case does not mean exceptions)
+	 */
 
 	@Override
 	public void resize(int width, int height) {
@@ -75,6 +83,11 @@ public class Game implements ApplicationListener {
 		this.renderer.getView().update(this.width, this.height);
 
 	}
+	
+	/**
+	 * render is called everytime the window renders.
+	 * here we render the sprites and the debug view as well as tick foward our game logic.
+	 */
 
 	@Override
 	public void render() {
@@ -83,6 +96,10 @@ public class Game implements ApplicationListener {
 		this.level.tick();
 		System.out.println(this.level.getStats());
 	}
+	
+	/**
+	 * android specific method. the game does not use it as it is a desktop game.
+	 */
 
 	@Override
 	public void pause() {
@@ -90,11 +107,20 @@ public class Game implements ApplicationListener {
 
 	}
 	
+	/**
+	 * android specific method. the game does not use it as it is a desktop game.
+	 */
+	
 	@Override
 	public void resume() {
 		// TODO Auto-generated method stub
 
 	}
+	
+	/**
+	 * due to the way libGDX is designed, we need to dispose unused resources manually.
+	 * failing to do so results in memory leaks.
+	 */
 
 	@Override
 	public void dispose() {

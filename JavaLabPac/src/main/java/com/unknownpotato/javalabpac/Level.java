@@ -103,7 +103,7 @@ public class Level implements Tickable, Disposable, ContactListener {
 		for(Entity e : this.entitylist){
 			e.dispose();
 		}
-		
+		this.world.dispose();
 	}
 	
 	public void updateEntities(){
