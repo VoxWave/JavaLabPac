@@ -6,6 +6,17 @@
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>
+    	<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<mainClass>com.unknownpotato.javalabpac.Main</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.1</version>
