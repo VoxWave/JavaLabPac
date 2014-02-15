@@ -165,18 +165,28 @@ public class Level implements Tickable, Disposable, ContactListener {
 		entityA.collide(entityB, type);
 		entityB.collide(entityA, type);
 	}
+	
+	/**
+	 * I dont know what this method does mostly because I don't need it in this project.
+	 */
 
 	@Override
 	public void preSolve(Contact contact, Manifold oldManifold) {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	/**
+	 * I dont know what this method does mostly because I don't need it in this project.
+	 */
 
 	@Override
 	public void postSolve(Contact contact, ContactImpulse impulse) {
 		// TODO Auto-generated method stub
 		
 	}
+	
+
 
 
 }
