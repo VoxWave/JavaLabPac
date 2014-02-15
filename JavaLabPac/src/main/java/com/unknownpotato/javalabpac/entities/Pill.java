@@ -103,7 +103,7 @@ public class Pill implements Entity {
 		System.out.println(entityB);
 		if(type == type.START) {
 			if(entityB.getType() == EntityType.PACMAN) {
-				this.level.getStats().addScore();
+				this.level.getStats().incrementScore();
 //				this.level.getEntities().remove(this);
 //				this.dispose();
 			}

@@ -5,6 +5,7 @@ package com.unknownpotato.javalabpac;
  * @author VoxWave
  *
  * This class keeps track of your score and pacmans lives.
+ * this classes methods are pretty self explanatory.
  */
 
 public class Stats {
@@ -20,7 +21,7 @@ public class Stats {
 		return lives;  
 	}
 	
-	public void addScore(){
+	public void incrementScore(){
 		this.score++;
 	}
 	
