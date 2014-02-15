@@ -76,6 +76,13 @@ public class Level implements Tickable, Disposable, ContactListener {
 		}
 		
 	}
+	
+	/**
+	 * Tick is called in the game render loop.
+	 * tick advances the logic of the game and the physics engine.
+	 * TODO: remove entities marked for removal 
+	 * (because we cannot remove entities bodies while we are doing the collision logic for that body.)
+	 */
 
 	public void tick(){
 		updateEntities();
@@ -97,6 +104,10 @@ public class Level implements Tickable, Disposable, ContactListener {
 		// TODO Auto-generated method stub
 		return this.entitylist;
 	}
+	
+	/**
+	 * see Game dispose method
+	 */
 
 	@Override
 	public void dispose() {
@@ -106,15 +117,30 @@ public class Level implements Tickable, Disposable, ContactListener {
 		this.world.dispose();
 	}
 	
+	/**
+	 * in this method we are supposed to dispose of entities that are marked for removal
+	 * such entities include pill (when pacman collides with pill, pill marks itself to be removed)
+	 */
+	
 	public void updateEntities(){
 		
 	}
+	
+	/**
+	 * this method is called when an collision between two bodies starts.
+	 * see doContact for more detail on what happens
+	 */
 
 	@Override
 	public void beginContact(Contact contact) {
 		// TODO Auto-generated method stub
 		doContact(contact,CollisionType.START);
 	}
+	
+	/**
+	 * this method is called when an collision between two bodies ends
+	 * see doContact for more detail on what happens.
+	 */
 
 	@Override
 	public void endContact(Contact contact) {
@@ -122,6 +148,14 @@ public class Level implements Tickable, Disposable, ContactListener {
 		doContact(contact,CollisionType.END);
 		
 	}
+	
+	/**
+	 * whenever two bodies collision starts or end this method is called.
+	 * both entities (bodies have user data which is the entity object) collide methods are called.
+	 * 
+	 * @param contact
+	 * @param type
+	 */
 	
 	private void doContact(Contact contact, CollisionType type) {
 		Body bodyA = contact.getFixtureA().getBody();

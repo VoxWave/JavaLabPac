@@ -118,7 +118,7 @@ public class Game implements ApplicationListener {
 	}
 	
 	/**
-	 * due to the way libGDX is designed, we need to dispose unused resources manually.
+	 * due to the way libGDX is designed, we need to dispose some of the unused resources manually.
 	 * failing to do so results in memory leaks.
 	 */
 
@@ -127,7 +127,6 @@ public class Game implements ApplicationListener {
 		// TODO Auto-generated method stub
 		this.renderer.dispose();
 		this.level.dispose();
-
 	}
 
 	
