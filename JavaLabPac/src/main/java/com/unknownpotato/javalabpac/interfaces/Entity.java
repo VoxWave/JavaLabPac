@@ -17,7 +17,7 @@ import com.unknownpotato.javalabpac.enums.EntityType;
 
 /**
  * all of the things that appear on the screen (ghost, pacman, pill and wall)
- * implement this interfaceå
+ * implement this interface
  * @author VoxWave
  */
 public interface Entity extends Tickable, Disposable {
