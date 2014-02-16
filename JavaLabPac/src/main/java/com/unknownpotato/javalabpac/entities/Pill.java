@@ -31,10 +31,12 @@ public class Pill implements Entity {
 	private Level level;
 	private Sprite sprite;
 	private Body body;
+	private boolean isDead;
 	
 	public Pill(Vector2 pos, Level level, Sprite sprite) {
 		this.level = level;
 		this.sprite = sprite;
+		this.isDead = false;
 		this.createBody(pos);
 	}
 
@@ -104,8 +106,7 @@ public class Pill implements Entity {
 		if(type == type.START) {
 			if(entityB.getType() == EntityType.PACMAN) {
 				this.level.getStats().incrementScore();
-//				this.level.getEntities().remove(this);
-//				this.dispose();
+				this.isDead = true;
 			}
 		}
 	}
@@ -124,7 +125,7 @@ public class Pill implements Entity {
 
 	@Override
 	public float getSize() {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stuba
 		return 2;
 	}
 
@@ -132,6 +133,13 @@ public class Pill implements Entity {
 	public float getRotation() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	
+
+	@Override
+	public boolean isDead() {
+		// TODO Auto-generated method stub
+		return this.isDead;
 	}
 
 }

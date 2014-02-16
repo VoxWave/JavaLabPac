@@ -88,4 +88,10 @@ public class Ghost implements Entity {
 		return null;
 	}
 
+	@Override
+	public boolean isDead() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

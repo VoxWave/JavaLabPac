@@ -80,12 +80,10 @@ public class Level implements Tickable, Disposable, ContactListener {
 	/**
 	 * Tick is called in the game render loop.
 	 * tick advances the logic of the game and the physics engine.
-	 * TODO: remove entities marked for removal 
-	 * (because we cannot remove entities bodies while we are doing the collision logic for that body.)
 	 */
 
 	public void tick(){
-		updateEntities();
+		removeDeadEntities();
 		this.world.step(1, 10, 10);
 		pacman.tick();
 	}
@@ -122,8 +120,17 @@ public class Level implements Tickable, Disposable, ContactListener {
 	 * such entities include pill (when pacman collides with pill, pill marks itself to be removed)
 	 */
 	
-	public void updateEntities(){
-		
+	public void removeDeadEntities(){
+		ArrayList<Entity> toBeRemoved = new ArrayList<Entity>();
+		for(Entity e:this.entitylist){
+			if(e.isDead()){
+				toBeRemoved.add(e);
+			}
+		}
+		for(Entity e : toBeRemoved){
+			this.entitylist.remove(e);
+			e.dispose();
+		}
 	}
 	
 	/**

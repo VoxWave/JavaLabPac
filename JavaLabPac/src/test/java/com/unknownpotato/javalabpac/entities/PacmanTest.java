@@ -29,7 +29,6 @@ public class PacmanTest {
 
 	@Before
 	public void setUp() throws Exception {
-//		GdxNativesLoader.load();
 		this.world = new World(new Vector2(),true);
 		this.pacman = new Pacman(new Vector2() , this.world, null);
 	}

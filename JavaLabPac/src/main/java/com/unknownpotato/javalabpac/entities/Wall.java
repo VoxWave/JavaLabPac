@@ -107,5 +107,11 @@ public class Wall implements Entity {
 		// TODO Auto-generated method stub
 		return this.type;
 	}
+
+	@Override
+	public boolean isDead() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 }

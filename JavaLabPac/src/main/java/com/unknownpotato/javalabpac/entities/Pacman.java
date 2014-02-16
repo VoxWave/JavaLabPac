@@ -160,4 +160,10 @@ public class Pacman implements Entity {
 		return EntityType.PACMAN;
 	}
 
+	@Override
+	public boolean isDead() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

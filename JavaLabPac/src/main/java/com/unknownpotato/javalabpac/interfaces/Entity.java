@@ -38,7 +38,7 @@ public interface Entity extends Tickable, Disposable {
 
 	float getSize();
 
-
+	boolean isDead();
 
 	float getRotation();
     
