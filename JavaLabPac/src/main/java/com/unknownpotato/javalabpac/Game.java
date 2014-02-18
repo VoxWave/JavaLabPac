@@ -95,6 +95,7 @@ public class Game implements ApplicationListener {
 		this.debug.render(this.level.getWorld(), this.renderer.getView().getCamera().combined.cpy());
 		this.level.tick();
 		System.out.println(this.level.getStats());
+		this.level.getEntities().update();
 	}
 	
 	/**

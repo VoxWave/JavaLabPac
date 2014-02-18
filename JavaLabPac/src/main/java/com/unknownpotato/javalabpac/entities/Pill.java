@@ -1,10 +1,13 @@
 package com.unknownpotato.javalabpac.entities;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
@@ -49,9 +52,7 @@ public class Pill implements Entity {
 	@Override
 	public void dispose() {
 		this.level.getWorld().destroyBody(this.body);
-		
-		
-	}
+		}
 
 	@Override
 	public void createBody(Vector2 pos) {
@@ -106,7 +107,7 @@ public class Pill implements Entity {
 		if(type == type.START) {
 			if(entityB.getType() == EntityType.PACMAN) {
 				this.level.getStats().incrementScore();
-				this.isDead = true;
+				this.level.getEntities().remove(this);
 			}
 		}
 	}

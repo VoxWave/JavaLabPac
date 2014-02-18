@@ -37,20 +37,21 @@ public class Level implements Tickable, Disposable, ContactListener {
 	private Sprite wall;
 	private Sprite pill;
 	private Sprite ghost;
-	private ArrayList<Entity> entitylist;
+	private Pool<Entity> entitypool;
 	
 	public Level(Sprite pacman, Sprite wall, Sprite pill, Sprite ghost){
 		this.stats = new Stats();
-		this.entitylist = new ArrayList<Entity>();
+		this.entitypool = new Pool<Entity>();
 		this.world = new World(new Vector2(), true);
 		this.world.setContactListener(this);
 		this.pacsprite = pacman;
 		this.pacman = new Pacman(new Vector2(),this.world, this.pacsprite);
-		this.entitylist.add(this.pacman);
+		this.entitypool.add(this.pacman);
 		this.wall = wall;
 		this.pill = pill;
-		this.entitylist.add(new Pill(new Vector2(4f,4f), this, this.pill));
+		this.entitypool.add(new Pill(new Vector2(4f,4f), this, this.pill));
 		createWalls();
+		this.entitypool.update();
 	}
 	
 	/**
@@ -60,19 +61,19 @@ public class Level implements Tickable, Disposable, ContactListener {
 	private void createWalls() {
 		 //lisätään yläseinämä
 		for(float i = -21f; i<21f ; i+=2){
-			this.entitylist.add(new Wall(new Vector2(i,14f),this.world, this.wall));
+			this.entitypool.add(new Wall(new Vector2(i,14f),this.world, this.wall));
 		}
 		//lisätään alaseinämä
 		for(float i = -21f; i<21f ; i+=2){
-			this.entitylist.add(new Wall(new Vector2(i,-14f),this.world, this.wall));
+			this.entitypool.add(new Wall(new Vector2(i,-14f),this.world, this.wall));
 		}
 		//lisätään oikeaseinämä
 		for(float i = -14f; i<14f ; i+=2){
-			this.entitylist.add(new Wall(new Vector2(-19f, i),this.world, this.wall));
+			this.entitypool.add(new Wall(new Vector2(-19f, i),this.world, this.wall));
 		}
 		//lisätään vasenseinämä
 		for(float i = -14f; i<14f ; i+=2){
-			this.entitylist.add(new Wall(new Vector2(19f, i),this.world, this.wall));
+			this.entitypool.add(new Wall(new Vector2(19f, i),this.world, this.wall));
 		}
 		
 	}
@@ -83,7 +84,6 @@ public class Level implements Tickable, Disposable, ContactListener {
 	 */
 
 	public void tick(){
-		removeDeadEntities();
 		this.world.step(1, 10, 10);
 		pacman.tick();
 	}
@@ -98,9 +98,9 @@ public class Level implements Tickable, Disposable, ContactListener {
 		return this.stats;
 	}
 
-	public List<Entity> getEntities() {
+	public Pool<Entity> getEntities() {
 		// TODO Auto-generated method stub
-		return this.entitylist;
+		return this.entitypool;
 	}
 	
 	/**
@@ -109,7 +109,7 @@ public class Level implements Tickable, Disposable, ContactListener {
 
 	@Override
 	public void dispose() {
-		for(Entity e : this.entitylist){
+		for(Entity e : this.entitypool){
 			e.dispose();
 		}
 		this.world.dispose();
@@ -122,13 +122,13 @@ public class Level implements Tickable, Disposable, ContactListener {
 	
 	public void removeDeadEntities(){
 		ArrayList<Entity> toBeRemoved = new ArrayList<Entity>();
-		for(Entity e:this.entitylist){
+		for(Entity e:this.entitypool){
 			if(e.isDead()){
 				toBeRemoved.add(e);
 			}
 		}
 		for(Entity e : toBeRemoved){
-			this.entitylist.remove(e);
+			this.entitypool.remove(e);
 			e.dispose();
 		}
 	}

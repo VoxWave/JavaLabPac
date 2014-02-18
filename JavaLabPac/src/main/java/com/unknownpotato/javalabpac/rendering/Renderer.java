@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Disposable;
+import com.unknownpotato.javalabpac.Pool;
 import com.unknownpotato.javalabpac.interfaces.Entity;
 
 public class Renderer implements Disposable {
@@ -28,7 +29,7 @@ public class Renderer implements Disposable {
 		return view;
 	}
 	
-	public void render(List<Entity> list) {
+	public void render(Pool<Entity> list) {
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		Gdx.gl.glViewport(0, 0, width, height);
