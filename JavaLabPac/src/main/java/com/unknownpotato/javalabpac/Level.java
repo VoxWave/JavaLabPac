@@ -45,7 +45,7 @@ public class Level implements Tickable, Disposable, ContactListener {
 		this.world = new World(new Vector2(), true);
 		this.world.setContactListener(this);
 		this.pacsprite = pacman;
-		this.pacman = new Pacman(new Vector2(),this.world, this.pacsprite);
+		this.pacman = new Pacman(new Vector2(1,0),this.world, this.pacsprite);
 		this.entitypool.add(this.pacman);
 		this.wall = wall;
 		this.pill = pill;
