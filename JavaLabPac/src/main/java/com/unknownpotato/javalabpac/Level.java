@@ -49,29 +49,27 @@ public class Level implements Tickable, Disposable, ContactListener {
 		this.entitypool.add(this.pacman);
 		this.wall = wall;
 		this.pill = pill;
-		this.entitypool.add(new Pill(new Vector2(4f,4f), this, this.pill));
-		createWalls();
+		prepareMap();
 		this.entitypool.update();
 	}
 	
 	/**
-	 * createWalls is a method for creating the wall I.E creating the map.
-	 * it is currently hardcoded
+	 * prepareMap is a method for creating the map (placing walls pills and such)
 	 */
-	private void createWalls() {
-		 //lisätään yläseinämä
+	private void prepareMap() {
+		 //add the upper walls
 		for(float i = -21f; i<21f ; i+=2){
 			this.entitypool.add(new Wall(new Vector2(i,14f),this.world, this.wall));
 		}
-		//lisätään alaseinämä
+		//add the lower walls
 		for(float i = -21f; i<21f ; i+=2){
 			this.entitypool.add(new Wall(new Vector2(i,-14f),this.world, this.wall));
 		}
-		//lisätään oikeaseinämä
+		//add the right walls
 		for(float i = -14f; i<14f ; i+=2){
 			this.entitypool.add(new Wall(new Vector2(-19f, i),this.world, this.wall));
 		}
-		//lisätään vasenseinämä
+		//add the left walls
 		for(float i = -14f; i<14f ; i+=2){
 			this.entitypool.add(new Wall(new Vector2(19f, i),this.world, this.wall));
 		}
