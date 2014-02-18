@@ -165,6 +165,9 @@ public class Level implements Tickable, Disposable, ContactListener {
 	 */
 	
 	private void doContact(Contact contact, CollisionType type) {
+		if (contact.getFixtureA() == null || contact.getFixtureB() == null) {
+            return;
+    }
 		Body bodyA = contact.getFixtureA().getBody();
 		Body bodyB = contact.getFixtureB().getBody();
 		Entity entityA = (Entity) bodyA.getUserData();

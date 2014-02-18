@@ -22,6 +22,7 @@ import com.unknownpotato.javalabpac.entities.Wall;
 import com.unknownpotato.javalabpac.enums.CollisionType;
 import com.unknownpotato.javalabpac.interfaces.Entity;
 import com.unknownpotato.javalabpac.rendering.Renderer;
+import com.unknownpotato.javalabpac.Level;
 
 /**
  * 
