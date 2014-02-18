@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Files.FileType;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.Texture;
@@ -22,7 +23,6 @@ import com.unknownpotato.javalabpac.entities.Wall;
 import com.unknownpotato.javalabpac.enums.CollisionType;
 import com.unknownpotato.javalabpac.interfaces.Entity;
 import com.unknownpotato.javalabpac.rendering.Renderer;
-import com.unknownpotato.javalabpac.Level;
 
 /**
  * 
@@ -41,6 +41,7 @@ public class Game implements ApplicationListener {
 	private int height;
 	private Renderer renderer;
 	private Box2DDebugRenderer debug;
+	private boolean renderDebug;
 	
 	
 	/**
@@ -53,14 +54,15 @@ public class Game implements ApplicationListener {
 		//these are the two renderers we use. 
 		//renderer renders sprites
 		//debug renders the physics engines bodies (its used for debuging ofc) 
+		this.renderDebug = true;
 		this.renderer = new Renderer();
 		this.debug = new Box2DDebugRenderer(true, true, true, true, true, true);
 		
 		//load up all the sprites
 		Sprite pac = new Sprite(new Texture(Gdx.files.getFileHandle("rsc/Pacman.png", FileType.Internal)));
-		Sprite pill = new Sprite(new Texture(Gdx.files.getFileHandle("rsc/Pacman.png", FileType.Internal)));
-		Sprite ghost = new Sprite(new Texture(Gdx.files.getFileHandle("rsc/Pacman.png", FileType.Internal)));
-		Sprite wall = new Sprite(new Texture(Gdx.files.getFileHandle("rsc/Pacman.png", FileType.Internal)));
+		Sprite pill = new Sprite(new Texture(Gdx.files.getFileHandle("rsc/Pill.png", FileType.Internal)));
+		Sprite ghost = new Sprite(new Texture(Gdx.files.getFileHandle("rsc/Ghost.png", FileType.Internal)));
+		Sprite wall = new Sprite(new Texture(Gdx.files.getFileHandle("rsc/Wall.png", FileType.Internal)));
 		
 		this.level = new Level(pac, wall, pill, ghost);
 		
@@ -93,10 +95,15 @@ public class Game implements ApplicationListener {
 	@Override
 	public void render() {
 		this.renderer.render(this.level.getEntities());
-		this.debug.render(this.level.getWorld(), this.renderer.getView().getCamera().combined.cpy());
+		if(this.renderDebug){
+			this.debug.render(this.level.getWorld(), this.renderer.getView().getCamera().combined.cpy());
+		}
 		this.level.tick();
 		System.out.println(this.level.getStats());
 		this.level.getEntities().update();
+		if(Gdx.input.isKeyPressed(Keys.F1)){
+			this.renderDebug = !this.renderDebug;
+		}
 	}
 	
 	/**

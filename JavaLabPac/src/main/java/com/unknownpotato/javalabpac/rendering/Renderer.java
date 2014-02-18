@@ -30,7 +30,7 @@ public class Renderer implements Disposable {
 	}
 	
 	public void render(Pool<Entity> list) {
-		Gdx.gl.glClearColor(1, 1, 1, 1);
+		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		Gdx.gl.glViewport(0, 0, width, height);
 		this.view.beforeRender();
