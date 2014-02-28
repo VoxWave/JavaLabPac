@@ -1,0 +1,3 @@
+käynnistyy jar tiedostosta
+ohjataan WASD näppäimillä
+

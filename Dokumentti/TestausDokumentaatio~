@@ -1,0 +1,5 @@
+JUnit testit hajosivat kun menin muuttamaan PacMan luokan rakennetta. muutenkin testejä on vähän.
+
+muutenkin tykkään enemmän manuaalisesta testauksesta kuin automaatti testeistä (paitsi jos testaus on helposti tehtävissä).
+
+tyylini on että koodaan ja sitten suoritan ohjelman aika tiheällä aikavälillä. libGDX tarjoama debug näkymä paljastaa myös joitakin bugeja. esimerkiksi en saanut pacmanin kuolemaan liittyvää logiikkaa toimimaan kunnolla sillä pacmanin kehoja jäi vielä mapille lojumaan.
