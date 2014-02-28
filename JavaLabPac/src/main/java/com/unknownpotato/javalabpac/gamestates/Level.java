@@ -67,6 +67,10 @@ public class Level implements ContactListener, State {
 		this.entitypool.update();
 	}
 	
+	public Pacman getPacman(){
+		return this.pacman;
+	}
+	
 	/**
 	 * prepareMap is a method for creating the map (placing walls pills and such)
 	 */
@@ -102,7 +106,16 @@ public class Level implements ContactListener, State {
 	public void addWalls(){
 		this.entitypool.add(new Wall(new Vector2(1f,2f), this, this.wall));
 		this.entitypool.add(new Wall(new Vector2(3f,2f), this, this.wall));
-		this.entitypool.add(new Wall(new Vector2(-1f,2f), this, this.wall));
+		this.entitypool.add(new Wall(new Vector2(7f,2f), this, this.wall));
+		this.entitypool.add(new Wall(new Vector2(9f,2f), this, this.wall));
+		this.entitypool.add(new Wall(new Vector2(11f,2f), this, this.wall));
+		this.entitypool.add(new Wall(new Vector2(13f,2f), this, this.wall));
+		this.entitypool.add(new Wall(new Vector2(15f,2f), this, this.wall));
+		this.entitypool.add(new Wall(new Vector2(17f,2f), this, this.wall));
+		this.entitypool.add(new Wall(new Vector2(-1,2f),this, this.wall));
+		this.entitypool.add(new Wall(new Vector2(-3,2f),this, this.wall));
+		this.entitypool.add(new Wall(new Vector2(-7,2f),this, this.wall));
+		
 	}
 	/**
 	 * addPill creates and adds one pill into the entity pool.
@@ -136,7 +149,7 @@ public class Level implements ContactListener, State {
 	}
 	
 	public void addGhosts(){
-		this.entitypool.add(new Ghost(ghost, pacman, this, new Vector2(13f,8f)));
+		this.entitypool.add(new Ghost(ghost, this, new Vector2(13f,8f)));
 	}
 	
 	/**
@@ -150,7 +163,11 @@ public class Level implements ContactListener, State {
 			e.tick();
 		}
 		this.entitypool.update();
-			return this;
+		if(this.pacman.isDead()){
+			this.onDeathReset();
+			this.stats.reduceLives();
+		}
+		return this;
 		}
 	
 	public World getWorld(){
@@ -283,16 +300,13 @@ public class Level implements ContactListener, State {
 	}
 
 	public void onDeathReset() {
-		// TODO Auto-generated method stub
-		this.pacman = new Pacman(new Vector2(1,0), this, this.pacsprite);
-		this.entitypool.add(this.pacman);
 		for(Entity e:this.entitypool){
-			if(e.getType() == EntityType.GHOST || e.getType() == EntityType.PACMAN){
-				this.entitypool.remove(e);
-			}
+			this.entitypool.remove(e);
 		}
-		this.addGhosts();
-//		this.entitypool.update();
+		this.entitypool.update();
+		this.world.dispose();
+		this.world = new World(new Vector2(), true);
+		prepareMap();
 	}
 	
 

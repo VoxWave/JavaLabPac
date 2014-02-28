@@ -9,13 +9,12 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Scanner lukija = new Scanner(System.in);
-		System.out.println("Please input your player name:");
-		String nimi = lukija.nextLine();
+//		Scanner lukija = new Scanner(System.in);
+//		System.out.println("Please input your player name:");
+//		String nimi = lukija.nextLine();
 		System.out.println("Starting the game...");
 		GdxNativesLoader.load();
-		new LwjglApplication(new Game(nimi), "Game", 800, 600, false);
-		System.out.println(nimi);
+		new LwjglApplication(new Game(new String()), "Game", 800, 600, false);
 	}
 
 }

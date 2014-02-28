@@ -31,8 +31,7 @@ public class Ghost implements Entity {
 	private Sprite sprite;
 	private Pacman pacman;
 	
-	public Ghost(Sprite sprite,Pacman pacman,Level level,Vector2 pos){
-		this.pacman = pacman;
+	public Ghost(Sprite sprite,Level level,Vector2 pos){
 		this.level = level;
 		this.sprite = sprite;
 		this.createBody(pos);
@@ -41,7 +40,7 @@ public class Ghost implements Entity {
 
 	@Override
 	public void tick() {
-		Vector2 forssa = new Vector2(this.getPos()).scl(-1f).add(this.pacman.getPos());
+		Vector2 forssa = new Vector2(this.getPos()).scl(-1f).add(this.level.getPacman().getPos());
 		forssa.nor();
 		forssa.scl(0.0000001f);
 		this.body.applyForceToCenter(forssa, true);
@@ -86,7 +85,6 @@ public class Ghost implements Entity {
 	@Override
 	public void collide(Entity entityB, CollisionType type) {
 		if(entityB.getType() == EntityType.PACMAN && type == CollisionType.START){
-			this.level.getStats().reduceLives();
 			entityB.setDead(true);
 		}
 		

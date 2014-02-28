@@ -1,6 +1,5 @@
 Aihe: Pacman
-Toteutetaan peli pacman. Tavoitteena siis tehdä mahdollisimman valmis
-pacman klooni. eli pacman kerää tasolta löytyviä palloja joista se saa
+Toteutetaan peli pacman. Eli pacman kerää tasolta löytyviä palloja joista se saa
 pisteitä. lisäksi pacmanin täytyy varoa kummituksia joiden kosketuksesta
 pacman kuolee. Kummituksilla pitäisi olla tekoäly joka saa ne liikkumaan ja
 jahtaamaan pelaajaa.  

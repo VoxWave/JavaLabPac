@@ -37,6 +37,7 @@ public class Pacman implements Entity {
 	private Level level;
 	private World world;
 	private Texture texture;
+	private boolean isDead;
 	
 	public Pacman(Vector2 pos, Level level, Sprite sprite){
 		
@@ -44,6 +45,7 @@ public class Pacman implements Entity {
 		 * load up our image
 		 */
 		this.sprite = sprite;
+		this.isDead = false;
 //		FileHandle file = Gdx.files.getFileHandle("rsc/Pacman.png", FileType.Internal);
 //		this.texture = new Texture(file);
 //		this.sprite = new Sprite(texture);
@@ -147,26 +149,28 @@ public class Pacman implements Entity {
 
 	@Override
 	public float getRotation() {
-		// TODO Auto-generated method stub
 		return this.body.getLinearVelocity().angle();
 	}
 
 	@Override
 	public void dispose() {
-		// TODO Auto-generated method stub
 		this.world.destroyBody(this.body);
 	}
 
 	@Override
 	public EntityType getType() {
-		// TODO Auto-generated method stub
 		return EntityType.PACMAN;
 	}
 
 	@Override
 	public boolean isDead() {
-		// TODO Auto-generated method stub
-		return false;
+		return isDead;
+	}
+
+	@Override
+	public void setDead(boolean isDead) {
+		this.isDead = isDead;
+		
 	}
 
 }
