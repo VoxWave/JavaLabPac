@@ -1,4 +1,4 @@
-package com.unknownpotato.javalabpac;
+package com.unknownpotato.javalabpac.gamestates;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,18 +6,25 @@ import java.util.List;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Disposable;
+import com.unknownpotato.javalabpac.Pool;
+import com.unknownpotato.javalabpac.State;
+import com.unknownpotato.javalabpac.Stats;
+import com.unknownpotato.javalabpac.entities.Ghost;
 import com.unknownpotato.javalabpac.entities.Pacman;
 import com.unknownpotato.javalabpac.entities.Pill;
 import com.unknownpotato.javalabpac.entities.Wall;
 import com.unknownpotato.javalabpac.enums.CollisionType;
+import com.unknownpotato.javalabpac.enums.EntityType;
 import com.unknownpotato.javalabpac.interfaces.Entity;
 import com.unknownpotato.javalabpac.interfaces.Tickable;
+import com.unknownpotato.javalabpac.rendering.Renderer;
 
 /**
  * 
@@ -28,7 +35,7 @@ import com.unknownpotato.javalabpac.interfaces.Tickable;
  * this class is for easy rendering and ticking of entities.
  * this class also contains a Stats object which keeps track of pacmans lives and the score.
  */
-public class Level implements Tickable, Disposable, ContactListener {
+public class Level implements ContactListener, State {
 	
 	private World world;
 	private Pacman pacman;
@@ -37,15 +44,22 @@ public class Level implements Tickable, Disposable, ContactListener {
 	private Sprite wall;
 	private Sprite pill;
 	private Sprite ghost;
+	private int pillCount;
 	private Pool<Entity> entitypool;
+	private Renderer renderer;
+	private Box2DDebugRenderer debug;
 	
 	public Level(Sprite pacman, Sprite wall, Sprite pill, Sprite ghost){
-		this.stats = new Stats();
+		this.pillCount = 0;
+		this.renderer = new Renderer();
+		this.debug = new Box2DDebugRenderer(true, true, true, true, true, true);
+		this.ghost = ghost;
+		this.stats = new Stats(3);
 		this.entitypool = new Pool<Entity>();
 		this.world = new World(new Vector2(), true);
 		this.world.setContactListener(this);
 		this.pacsprite = pacman;
-		this.pacman = new Pacman(new Vector2(1,0),this.world, this.pacsprite);
+		this.pacman = new Pacman(new Vector2(1,0),this, this.pacsprite);
 		this.entitypool.add(this.pacman);
 		this.wall = wall;
 		this.pill = pill;
@@ -56,24 +70,73 @@ public class Level implements Tickable, Disposable, ContactListener {
 	/**
 	 * prepareMap is a method for creating the map (placing walls pills and such)
 	 */
-	private void prepareMap() {
+	public void prepareMap() {
+		
+		createBoundaries();
+		addPills();
+		addWalls();
+		addGhosts();
+		
+	}
+	
+	/**
+	 * addPills adds all of the pills in their right places.
+	 */
+	
+	public void addPills(){
+		addPill(3f,0f);
+		addPill(5f,0f);
+		addPill(7f,0f);
+		addPill(9f,0f);
+		addPill(11f,0f);
+		addPill(13f,0f);
+		addPill(15f,0f);
+		addPill(17f,0f);
+	}
+	
+	/**
+	 * addWalls is a hardcoded method for adding walls of of the level layout.
+	 * I apologize for the lenght of it. too lazy to add for loop and such
+	 */
+	
+	public void addWalls(){
+		this.entitypool.add(new Wall(new Vector2(1f,2f), this, this.wall));
+		this.entitypool.add(new Wall(new Vector2(3f,2f), this, this.wall));
+		this.entitypool.add(new Wall(new Vector2(-1f,2f), this, this.wall));
+	}
+	/**
+	 * addPill creates and adds one pill into the entity pool.
+	 * the method also increments the pillcount so that we know when pacman has eaten all of the pills
+	 * @param x
+	 * @param y
+	 */
+	
+	public void addPill(float x, float y){
+		this.entitypool.add(new Pill(new Vector2(x,y),this,this.pill));
+		this.pillCount++;
+	}
+	
+	public void createBoundaries(){
 		 //add the upper walls
-		for(float i = -21f; i<21f ; i+=2){
-			this.entitypool.add(new Wall(new Vector2(i,14f),this.world, this.wall));
+		for(float i = -19f; i<21f ; i+=2){
+			this.entitypool.add(new Wall(new Vector2(i,14f),this, this.wall));
 		}
 		//add the lower walls
-		for(float i = -21f; i<21f ; i+=2){
-			this.entitypool.add(new Wall(new Vector2(i,-14f),this.world, this.wall));
+		for(float i = -19f; i<21f ; i+=2){
+			this.entitypool.add(new Wall(new Vector2(i,-14f),this, this.wall));
 		}
 		//add the right walls
 		for(float i = -14f; i<14f ; i+=2){
-			this.entitypool.add(new Wall(new Vector2(-19f, i),this.world, this.wall));
+			this.entitypool.add(new Wall(new Vector2(-19f, i),this, this.wall));
 		}
 		//add the left walls
 		for(float i = -14f; i<14f ; i+=2){
-			this.entitypool.add(new Wall(new Vector2(19f, i),this.world, this.wall));
+			this.entitypool.add(new Wall(new Vector2(19f, i),this, this.wall));
 		}
-		
+	}
+	
+	public void addGhosts(){
+		this.entitypool.add(new Ghost(ghost, pacman, this, new Vector2(13f,8f)));
 	}
 	
 	/**
@@ -81,10 +144,14 @@ public class Level implements Tickable, Disposable, ContactListener {
 	 * tick advances the logic of the game and the physics engine.
 	 */
 
-	public void tick(){
+	public State tick(){
 		this.world.step(1, 10, 10);
-		pacman.tick();
-	}
+		for(Entity e:this.entitypool){
+			e.tick();
+		}
+		this.entitypool.update();
+			return this;
+		}
 	
 	public World getWorld(){
 		return world;
@@ -111,6 +178,8 @@ public class Level implements Tickable, Disposable, ContactListener {
 			e.dispose();
 		}
 		this.world.dispose();
+		this.renderer.dispose();
+		this.debug.dispose();
 	}
 	
 	/**
@@ -192,6 +261,38 @@ public class Level implements Tickable, Disposable, ContactListener {
 	public void postSolve(Contact contact, ContactImpulse impulse) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void render() {
+		this.renderer.render(this.getEntities());
+		this.debug.render(this.getWorld(), this.renderer.getView().getCamera().combined.cpy());
+		
+	}
+
+	@Override
+	public void create() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void resize(int widht, int height) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void onDeathReset() {
+		// TODO Auto-generated method stub
+		this.pacman = new Pacman(new Vector2(1,0), this, this.pacsprite);
+		this.entitypool.add(this.pacman);
+		for(Entity e:this.entitypool){
+			if(e.getType() == EntityType.GHOST || e.getType() == EntityType.PACMAN){
+				this.entitypool.remove(e);
+			}
+		}
+		this.addGhosts();
+//		this.entitypool.update();
 	}
 	
 

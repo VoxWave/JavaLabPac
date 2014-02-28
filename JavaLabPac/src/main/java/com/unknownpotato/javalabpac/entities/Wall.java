@@ -9,6 +9,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.unknownpotato.javalabpac.enums.CollisionType;
 import com.unknownpotato.javalabpac.enums.Direction;
 import com.unknownpotato.javalabpac.enums.EntityType;
+import com.unknownpotato.javalabpac.gamestates.Level;
 import com.unknownpotato.javalabpac.interfaces.Entity;
 
 /**
@@ -24,10 +25,12 @@ public class Wall implements Entity {
 	private World world;
 	private Sprite sprite;
 	private Body body;
+	private Level level;
 	private final EntityType type = EntityType.WALL;
 
-	public Wall(Vector2 pos, World world, Sprite sprite){
-		this.world = world;
+	public Wall(Vector2 pos, Level level, Sprite sprite){
+		this.level = level;
+		this.world = this.level.getWorld();
 		this.sprite = sprite;
 		this.createBody(pos);
 		
@@ -112,6 +115,12 @@ public class Wall implements Entity {
 	public boolean isDead() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public void setDead(boolean isDead) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

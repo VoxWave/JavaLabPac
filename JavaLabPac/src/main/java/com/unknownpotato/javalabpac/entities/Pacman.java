@@ -10,13 +10,14 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.unknownpotato.javalabpac.Game;
-import com.unknownpotato.javalabpac.Level;
 import com.unknownpotato.javalabpac.enums.CollisionType;
 import com.unknownpotato.javalabpac.enums.Direction;
 import com.unknownpotato.javalabpac.enums.EntityType;
+import com.unknownpotato.javalabpac.gamestates.Level;
 import com.unknownpotato.javalabpac.interfaces.Entity;
 
 /**
@@ -37,7 +38,7 @@ public class Pacman implements Entity {
 	private World world;
 	private Texture texture;
 	
-	public Pacman(Vector2 pos,World world, Sprite sprite){
+	public Pacman(Vector2 pos, Level level, Sprite sprite){
 		
 		/**
 		 * load up our image
@@ -46,8 +47,8 @@ public class Pacman implements Entity {
 //		FileHandle file = Gdx.files.getFileHandle("rsc/Pacman.png", FileType.Internal);
 //		this.texture = new Texture(file);
 //		this.sprite = new Sprite(texture);
-		
-		this.world = world;
+		this.level = level;
+		this.world = this.level.getWorld();
 		
 		/**
 		 * Here we create a body for pacman.
@@ -129,11 +130,13 @@ public class Pacman implements Entity {
 
 		this.body = this.world.createBody(def);
 		body.setUserData(this);
-
-		PolygonShape shape = new PolygonShape();
-		shape.setAsBox(1, 1);
 		
-		this.body.createFixture(shape, 0.000001f);
+		CircleShape shape = new CircleShape();
+		shape.setRadius(1.0f);
+		FixtureDef fixdef = new FixtureDef();
+		fixdef.density = 0.000001f;
+		fixdef.shape = shape;
+		body.createFixture(fixdef);
 		shape.dispose();
 	}
 
@@ -145,13 +148,13 @@ public class Pacman implements Entity {
 	@Override
 	public float getRotation() {
 		// TODO Auto-generated method stub
-		return 0;
+		return this.body.getLinearVelocity().angle();
 	}
 
 	@Override
 	public void dispose() {
 		// TODO Auto-generated method stub
-		
+		this.world.destroyBody(this.body);
 	}
 
 	@Override

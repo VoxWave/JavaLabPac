@@ -1,48 +1,39 @@
 package com.unknownpotato.javalabpac;
 
-import java.util.ArrayList;
-
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Files.FileType;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
-import com.badlogic.gdx.physics.box2d.Contact;
-import com.badlogic.gdx.physics.box2d.ContactImpulse;
-import com.badlogic.gdx.physics.box2d.ContactListener;
-import com.badlogic.gdx.physics.box2d.Manifold;
-import com.badlogic.gdx.physics.box2d.World;
-import com.unknownpotato.javalabpac.entities.Pacman;
-import com.unknownpotato.javalabpac.entities.Wall;
-import com.unknownpotato.javalabpac.enums.CollisionType;
-import com.unknownpotato.javalabpac.interfaces.Entity;
+import com.unknownpotato.javalabpac.gamestates.Level;
+import com.unknownpotato.javalabpac.gamestates.NameGetter;
 import com.unknownpotato.javalabpac.rendering.Renderer;
 
 /**
- * 
- * @author VoxWave
- * 
  * Game is basically the libGDX equivalent of a main method.
  * the render method is called everytime the system renders the screen. 
  * we also run the logic part of the game in the render method.
+ * 
+ * 
+ * @author VoxWave
+ * 
  *
  */
 
 public class Game implements ApplicationListener {
 	
-	private Level level;
 	private int width;
 	private int height;
-	private Renderer renderer;
-	private Box2DDebugRenderer debug;
 	private boolean renderDebug;
+	private Level level;
+	private String nimi;
 	
+	
+	public Game(String nimi){
+		this.nimi=nimi;
+	}
 	
 	/**
 	 * create is sort of comparable to a constructor.
@@ -55,8 +46,7 @@ public class Game implements ApplicationListener {
 		//renderer renders sprites
 		//debug renders the physics engines bodies (its used for debuging ofc) 
 		this.renderDebug = true;
-		this.renderer = new Renderer();
-		this.debug = new Box2DDebugRenderer(true, true, true, true, true, true);
+		
 		
 		//load up all the sprites
 		Sprite pac = new Sprite(new Texture(Gdx.files.getFileHandle("rsc/Pacman.png", FileType.Internal)));
@@ -65,10 +55,11 @@ public class Game implements ApplicationListener {
 		Sprite wall = new Sprite(new Texture(Gdx.files.getFileHandle("rsc/Wall.png", FileType.Internal)));
 		
 		this.level = new Level(pac, wall, pill, ghost);
+		this.level.create();
 		
 		this.height = Gdx.graphics.getHeight();
 		this.width = Gdx.graphics.getWidth();
-		
+
 	}
 	
 	/**
@@ -83,7 +74,7 @@ public class Game implements ApplicationListener {
 		// TODO Auto-generated method stub
 		this.height= height;
 		this.width = width;
-		this.renderer.getView().update(this.width, this.height);
+		this.level.resize(this.width, this.height);
 
 	}
 	
@@ -94,16 +85,12 @@ public class Game implements ApplicationListener {
 
 	@Override
 	public void render() {
-		this.renderer.render(this.level.getEntities());
-		if(this.renderDebug){
-			this.debug.render(this.level.getWorld(), this.renderer.getView().getCamera().combined.cpy());
-		}
 		this.level.tick();
-		System.out.println(this.level.getStats());
-		this.level.getEntities().update();
-		if(Gdx.input.isKeyPressed(Keys.F1)){
-			this.renderDebug = !this.renderDebug;
+		this.level.render();
+		if(this.level.getStats().getLives() <= 0){
+			Gdx.app.exit();
 		}
+		
 	}
 	
 	/**
@@ -133,8 +120,6 @@ public class Game implements ApplicationListener {
 
 	@Override
 	public void dispose() {
-		// TODO Auto-generated method stub
-		this.renderer.dispose();
 		this.level.dispose();
 	}
 

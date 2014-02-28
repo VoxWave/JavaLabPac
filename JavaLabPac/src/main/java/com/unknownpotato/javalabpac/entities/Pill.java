@@ -12,10 +12,10 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
-import com.unknownpotato.javalabpac.Level;
 import com.unknownpotato.javalabpac.enums.CollisionType;
 import com.unknownpotato.javalabpac.enums.Direction;
 import com.unknownpotato.javalabpac.enums.EntityType;
+import com.unknownpotato.javalabpac.gamestates.Level;
 import com.unknownpotato.javalabpac.interfaces.Entity;
 
 /**
@@ -103,7 +103,6 @@ public class Pill implements Entity {
 
 	@Override
 	public void collide(Entity entityB, CollisionType type) {
-		System.out.println(entityB);
 		if(type == type.START) {
 			if(entityB.getType() == EntityType.PACMAN) {
 				this.level.getStats().incrementScore();
@@ -141,6 +140,12 @@ public class Pill implements Entity {
 	public boolean isDead() {
 		// TODO Auto-generated method stub
 		return this.isDead;
+	}
+
+	@Override
+	public void setDead(boolean isDead) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

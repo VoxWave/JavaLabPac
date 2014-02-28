@@ -43,7 +43,7 @@ public class Renderer implements Disposable {
 			float w = entity.getSize();
 			float h = entity.getSize();
 			// edit to make sprites scale smaller
-			batch.draw(sprite, pos.x - w/2, pos.y - h/2, w, h , w,
+			batch.draw(sprite, pos.x - w/2, pos.y - h/2, w/2, h/2 , w,
 					h, 1f, 1f, entity.getRotation());
 		}
 		batch.end();

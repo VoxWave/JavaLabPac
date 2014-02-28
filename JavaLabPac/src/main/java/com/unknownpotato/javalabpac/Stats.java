@@ -10,8 +10,14 @@ package com.unknownpotato.javalabpac;
 
 public class Stats {
 	
+	
 	private long score;
-	private long lives;
+	private int lives;
+	
+	public Stats(int lives){
+		this.lives = lives;
+		this.score = 0;
+	}
 	
 	public long getScore(){
 		return score;
